@@ -13,52 +13,87 @@
       --bg:#f7f9f5;
       --card:#ffffff;
       --muted:#6b7a63;
-      --radius:14px;
+      --radius:16px;
       --maxw:1100px;
     }
-    *{box-sizing:border-box}
-    body{font-family:Montserrat, Arial, sans-serif;margin:0;background:var(--bg);color:var(--green-2);-webkit-font-smoothing:antialiased}
-    header{background:linear-gradient(90deg,var(--green-1) 0%, #b2df8a 100%);padding:2rem 1rem;border-bottom:1px solid rgba(0,0,0,0.04)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Montserrat, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--green-2);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      background-image: url('https://www.transparenttextures.com/patterns/green-dust-and-scratches.png');
+    }
+
+    header{
+      background:linear-gradient(90deg,var(--green-1) 0%, #b2df8a 100%);
+      padding:2rem 1rem;
+      border-bottom:1px solid rgba(0,0,0,0.05);
+      background-image: url('https://www.transparenttextures.com/patterns/leaf.png');
+    }
     .container{max-width:var(--maxw);margin:0 auto;padding:0 1rem}
+
     header .top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    header h1{margin:0;font-size:1.6rem}
-    header p{margin:0;font-size:0.95rem;color:rgba(53,92,60,0.95)}
-    nav ul{display:flex;gap:1rem;list-style:none;padding:0;margin:0}
-    nav a{color:var(--green-2);text-decoration:none;padding:0.45rem 0.8rem;border-radius:999px;font-weight:700}
-    nav a:hover{background:rgba(0,0,0,0.06)}
+    header h1{margin:0;font-size:1.6rem;letter-spacing:0.5px}
+    header p{margin-top:0.3rem;font-size:0.95rem;color:rgba(53,92,60,0.95)}
 
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:1.5rem;align-items:center;margin-top:1.25rem}
-    .hero-card{background:var(--card);padding:1.5rem;border-radius:var(--radius);box-shadow:0 8px 30px rgba(127,201,127,0.08)}
-    .hero h2{margin:0 0 0.5rem 0;font-size:1.4rem}
-    .badge{display:inline-block;padding:0.25rem 0.6rem;border-radius:10px;background:rgba(53,92,60,0.08);font-weight:700;font-size:0.85rem}
+    nav ul{display:flex;gap:1rem;list-style:none}
+    nav a{color:var(--green-2);text-decoration:none;padding:0.45rem 0.9rem;border-radius:999px;font-weight:700;transition:all 0.25s ease}
+    nav a:hover{background:rgba(255,255,255,0.25)}
 
-    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
-    .product{background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.04);min-height:130px}
-    .product h3{margin:0 0 0.5rem 0}
-    .product p{margin:0;font-size:0.95rem;color:var(--muted)}
-    .order-btn{display:inline-block;margin-top:0.7rem;padding:0.5rem 0.9rem;border-radius:10px;background:var(--green-1);color:#fff;font-weight:700;text-decoration:none}
+    .hero{margin-top:2rem;display:grid;gap:1.5rem;align-items:center;grid-template-columns:1fr 340px;position:relative}
+    .hero::after{
+      content:"";
+      position:absolute;
+      bottom:-40px;
+      left:0;
+      width:100%;
+      height:80px;
+      background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23b2df8a" fill-opacity="0.4" d="M0,64L48,80C96,96,192,128,288,149.3C384,171,480,181,576,181.3C672,181,768,171,864,154.7C960,139,1056,117,1152,117.3C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+      background-size:cover;
+    }
+    .hero-card{background:var(--card);padding:2rem;border-radius:var(--radius);box-shadow:0 8px 30px rgba(127,201,127,0.12);transition:transform 0.3s ease;z-index:2;position:relative}
+    .hero-card:hover{transform:translateY(-4px)}
+    .hero h2{font-size:1.4rem;margin-bottom:0.6rem}
+    .badge{display:inline-block;padding:0.3rem 0.6rem;border-radius:10px;background:rgba(53,92,60,0.08);font-weight:700;font-size:0.85rem}
 
-    main{max-width:var(--maxw);margin:1.5rem auto;padding:1rem}
-    section.card{background:var(--card);padding:1.25rem;border-radius:var(--radius);box-shadow:0 10px 30px rgba(127,201,127,0.06);margin-bottom:1rem}
-    .two-col{display:grid;grid-template-columns:1fr 340px;gap:1rem}
-    .contact-cta{display:flex;flex-direction:column;gap:0.75rem}
-    .tel{font-size:1.05rem;font-weight:800;color:var(--green-2)}
-    .whatsapp{background:#25D366;color:#fff;padding:0.6rem;border-radius:8px;text-decoration:none;font-weight:700}
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+    .product{background:var(--card);padding:1.2rem;border-radius:var(--radius);box-shadow:0 6px 22px rgba(0,0,0,0.05);transition:all 0.3s ease;cursor:pointer;background-image:url('https://www.transparenttextures.com/patterns/natural-paper.png')}
+    .product:hover{transform:scale(1.02);box-shadow:0 10px 28px rgba(127,201,127,0.12)}
+    .product h3{margin-bottom:0.4rem;font-size:1.1rem}
+    .product p{font-size:0.95rem;color:var(--muted)}
+    .order-btn{display:inline-block;margin-top:0.7rem;padding:0.55rem 1rem;border-radius:10px;background:var(--green-1);color:#fff;font-weight:700;text-decoration:none;transition:background 0.3s}
+    .order-btn:hover{background:#6fb46f}
+
+    section.card{background:var(--card);padding:1.5rem;border-radius:var(--radius);box-shadow:0 10px 32px rgba(127,201,127,0.08);margin-bottom:1.5rem;transition:all 0.3s ease;background-image:url('https://www.transparenttextures.com/patterns/crossword.png')}
+    section.card:hover{box-shadow:0 12px 36px rgba(127,201,127,0.15)}
 
     .accordion .item{border-top:1px solid #eef3ea;padding:0.75rem 0}
-    .accordion button{background:none;border:none;padding:0;font-weight:700;color:var(--green-2);cursor:pointer}
-    .hidden{display:none}
+    .accordion button{background:none;border:none;font-weight:700;color:var(--green-2);cursor:pointer;font-size:1rem;transition:color 0.2s}
+    .accordion button:hover{color:var(--green-1)}
+    .hidden{display:none;margin-top:0.6rem;color:var(--muted)}
 
-    form label{display:block;font-weight:700;margin:0.5rem 0 0.2rem 0}
-    form input[type="text"],form input[type="tel"],form textarea, form select{width:100%;padding:0.6rem;border-radius:8px;border:1px solid #e6eee3}
-    form .row{display:flex;gap:0.5rem}
-    form .row > *{flex:1}
-    .btn{display:inline-block;padding:0.6rem 1rem;border-radius:10px;background:var(--green-1);color:#fff;font-weight:800;border:none;cursor:pointer}
-    footer{background:#e5f4e3;padding:1rem;text-align:center;border-top:1px solid #b2df8a;margin-top:1.5rem}
+    form label{display:block;font-weight:700;margin:0.7rem 0 0.3rem 0}
+    form input,form textarea{width:100%;padding:0.6rem;border-radius:8px;border:1px solid #e6eee3}
+    .btn{display:inline-block;padding:0.7rem 1.2rem;border-radius:12px;background:var(--green-1);color:#fff;font-weight:700;border:none;cursor:pointer;text-decoration:none;transition:background 0.3s}
+    .btn:hover{background:#6fb46f}
+
+    footer{background:#e5f4e3;padding:1.5rem;text-align:center;border-top:1px solid #b2df8a;margin-top:2rem;position:relative}
+    footer::before{
+      content:"";
+      position:absolute;
+      top:-60px;
+      left:0;
+      width:100%;
+      height:60px;
+      background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%237fc97f" fill-opacity="0.3" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,133.3C672,107,768,85,864,96C960,107,1056,149,1152,165.3C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') no-repeat top;
+      background-size:cover;
+    }
+    footer p{margin-bottom:0.5rem;position:relative;z-index:2}
 
     @media (max-width:900px){
       .hero{grid-template-columns:1fr}
-      .two-col{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -67,247 +102,100 @@
     <div class="container top">
       <div>
         <h1>Kamburas — Kavutiri Farms</h1>
-        <p>Avocados, coffee, tea &amp; macadamia · Kavutiri, Embu, Kenya · Youth empowerment through sustainable farming</p>
+        <p>Avocados, coffee, tea & macadamia · Youth empowerment in Kavutiri, Embu</p>
       </div>
-      <div>
-        <nav aria-label="Primary">
-          <ul>
-            <li><a href="#story">Our Story</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#grafting">Avocado Grafting Guide</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="harvesting.html">Harvesting</a></li>
-            <li><a href="management.html">Management</a></li>
-            <li><a href="production.html">Production</a></li>
-          </ul>
-        </nav>
-      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#grafting">Grafting</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
   <main class="container">
-    <div class="hero-card hero">
+    <div class="hero hero-card">
       <div>
-        <h2>From seed to harvest — sustainable produce grown with youth-led care</h2>
-        <p style="color:var(--muted)">We grow certified seedlings and produce — avocados, coffee, tea and macadamia — while training and employing local youth in modern grafting, nursery management and post-harvest practices.</p>
-        <div style="margin-top:0.9rem">
-          <span class="badge">Locally owned — Kavutiri, Embu</span>
-          <span style="margin-left:0.6rem;color:var(--muted);font-weight:700">Phone: <a class="tel" href="tel:+254768261294">+254 768 261 294</a></span>
-        </div>
+        <h2>From seed to harvest — care with meaning</h2>
+        <p style="color:var(--muted)">We grow avocados, coffee, tea & macadamia while training youth in grafting, nursery care and harvesting — blending skill, tradition and renewal.</p>
         <div style="margin-top:1rem">
+          <span class="badge">Kavutiri, Embu</span>
+          <span style="margin-left:0.6rem;color:var(--muted);font-weight:700">☎ <a class="tel" href="tel:+254768261294">+254 768 261 294</a></span>
+        </div>
+        <div style="margin-top:1.2rem">
           <a class="order-btn" href="#order">Place an Order</a>
         </div>
       </div>
-
-      <aside class="card" aria-label="Quick contact">
-        <strong style="display:block">Quick Contact</strong>
+      <aside aria-label="Quick contact">
         <div class="contact-cta">
-          <a class="tel" href="tel:+254768261294">Call +254 768 261 294</a>
-          <a class="whatsapp" href="https://wa.me/254768261294?text=Hello%20Kamburas%20I%20would%20like%20to%20place%20an%20order" target="_blank" rel="noopener">Message on WhatsApp</a>
-          <a class="order-btn" href="#order">Order Online</a>
+          <a class="btn" href="tel:+254768261294">Call Us</a>
+          <a class="btn" href="https://wa.me/254768261294?text=Hello%20Kamburas" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </aside>
     </div>
 
     <section id="products" class="card">
       <h3>Our Products</h3>
-      <p style="color:var(--muted)">We supply fresh produce and nursery seedlings. Orders can be for local delivery or collection in Kavutiri. Quantities available depend on season — call or message us for current availability.</p>
-
-      <div class="products" aria-live="polite">
-        <article class="product">
-          <h3>Avocados</h3>
-          <p>Hass and local varieties — fresh fruit and grafted seedlings available.</p>
-          <a class="order-btn" href="#order">Order Avocados</a>
-        </article>
-
-        <article class="product">
-          <h3>Coffee</h3>
-          <p>Arabica coffee from our highland plots — cherry and green beans on request.</p>
-          <a class="order-btn" href="#order">Order Coffee</a>
-        </article>
-
-        <article class="product">
-          <h3>Tea</h3>
-          <p>Small-batch local tea — fresh, hand-tended.</p>
-          <a class="order-btn" href="#order">Order Tea</a>
-        </article>
-
-        <article class="product">
-          <h3>Macadamia</h3>
-          <p>Nut kernels and seedlings available — perfect for value-add processing.</p>
-          <a class="order-btn" href="#order">Order Macadamia</a>
-        </article>
-
-        <article class="product">
-          <h3>Seedlings &amp; Grafted Trees</h3>
-          <p>Vegetatively propagated grafted seedlings — great for consistent production and quality.</p>
-          <a class="order-btn" href="#order">Order Seedlings</a>
-        </article>
+      <div class="products">
+        <article class="product"><h3>Avocados</h3><p>Hass & local — fresh fruit & grafted seedlings.</p><a class="order-btn" href="#order">Order</a></article>
+        <article class="product"><h3>Coffee</h3><p>Arabica coffee — cherry & green beans.</p><a class="order-btn" href="#order">Order</a></article>
+        <article class="product"><h3>Tea</h3><p>Small-batch, hand-tended.</p><a class="order-btn" href="#order">Order</a></article>
+        <article class="product"><h3>Macadamia</h3><p>Kernels & seedlings for processing.</p><a class="order-btn" href="#order">Order</a></article>
+        <article class="product"><h3>Seedlings</h3><p>Grafted trees for consistent yield.</p><a class="order-btn" href="#order">Order</a></article>
       </div>
     </section>
 
     <section id="grafting" class="card">
-      <h3>Step-by-Step Guide to Grafting Your Avocado</h3>
-      <p style="color:var(--muted)">A short, practical guide for producers and trainees. This is the same technique we use in our training sessions at Kamburas.</p>
-
+      <h3>Avocado Grafting Guide</h3>
       <div class="accordion">
         <div class="item">
-          <button aria-expanded="false">Supplies &amp; Preparation</button>
-          <div class="hidden">
-            <ul>
-              <li>Parafilm for sealing scion and graft union</li>
-              <li>Pruning shears, sharp and clean</li>
-              <li>Grafting knife, sharp and clean</li>
-              <li>Rubber bands or grafting tape</li>
-              <li>Rootstock plant (seedling or selected rootstock)</li>
-              <li>Scion pieces (from a known, desirable tree)</li>
-            </ul>
-            <p style="color:var(--muted)"><strong>Rootstock:</strong> In our nursery we use vigorously grown seedlings planted wide-side down in well-draining media. It typically takes 4–6 weeks to germinate and several months to reach graftable size.</p>
-            <p style="color:var(--muted)"><strong>Scion:</strong> Select mature, hardened shoots with well-developed buds — cut to 4–6 inches and keep wrapped and moist until grafting the same day where possible.</p>
-          </div>
+          <button aria-expanded="false">Supplies & Preparation</button>
+          <div class="hidden">Clean tools, rootstock, parafilm & scions from mature trees.</div>
         </div>
-
         <div class="item">
-          <button aria-expanded="false">Grafting Steps (overview)</button>
-          <div class="hidden">
-            <ol>
-              <li><strong>Step 1:</strong> Select or grow your rootstock so it is healthy and about the recommended height (around 15 inches) so the union sits above soil level but not too high.</li>
-              <li><strong>Step 2:</strong> Select your scion. Use scions of similar diameter to the rootstock. Harvest and graft the same day when possible; keep scions wrapped to retain moisture.</li>
-              <li><strong>Step 3:</strong> Remove the top (apical growing point) of the rootstock with sharp, clean pruning shears so that the remaining rootstock is about 15 inches high.</li>
-              <li><strong>Step 4:</strong> With a clean grafting knife, make a center cut on the rootstock about 1 inch deep. Use a steady, controlled motion to produce a clean vertical slit.</li>
-              <li><strong>Step 5:</strong> Slice the base of the scion on both sides at a ~30° angle to create matching cambium contact surfaces. Fit the scion into the rootstock slit, turn as needed, and ensure cambium layers contact each other.</li>
-              <li><strong>Step 6:</strong> Secure the graft union using parafilm, grafting tape, or rubber bands. Seal the union to prevent desiccation and protect from pests.</li>
-              <li><strong>Aftercare:</strong> Keep the grafted plant in a shaded, humid environment. Monitor for union formation and remove excess shoots from the rootstock as the scion takes. Transplant when established.</li>
-            </ol>
-            <p style="color:var(--muted)">This is the practical method we teach our youth trainees at Kamburas to ensure consistent fruit quality and predictable production.</p>
-          </div>
+          <button aria-expanded="false">Steps Overview</button>
+          <div class="hidden">Cut, match cambium, seal, and nurture under shade until union forms.</div>
         </div>
       </div>
     </section>
 
     <section id="order" class="card">
       <h3>Order / Enquiry</h3>
-      <p style="color:var(--muted)">Use the form below to send us an order or enquiry. We will call or message you to confirm availability and delivery/collection details. Or call/WhatsApp us directly at <a href="tel:+254768261294">+254 768 261 294</a>.</p>
+      <form id="orderForm">
+        <label for="name">Your Name</label>
+        <input id="name" name="name" type="text" required>
 
-      <form id="orderForm" onsubmit="return handleOrder(event)">
-        <label for="name">Your name</label>
-        <input id="name" name="name" type="text" placeholder="Full name" required>
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" required>
 
-        <label for="phone">Phone number</label>
-        <input id="phone" name="phone" type="tel" placeholder="e.g. +2547..." required>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="3"></textarea>
 
-        <label for="items">Select products (tick and set quantity)</label>
-        <div style="display:grid;gap:0.6rem">
-          <label><input type="checkbox" name="items" value="Avocados"> Avocados</label>
-          <div class="row">
-            <input type="text" name="qty_avocados" placeholder="Qty (e.g. 10kg or 25 fruits)">
-          </div>
-
-          <label><input type="checkbox" name="items" value="Coffee"> Coffee</label>
-          <div class="row"><input type="text" name="qty_coffee" placeholder="Qty (e.g. 2kg)"></div>
-
-          <label><input type="checkbox" name="items" value="Tea"> Tea</label>
-          <div class="row"><input type="text" name="qty_tea" placeholder="Qty (e.g. 1kg)"></div>
-
-          <label><input type="checkbox" name="items" value="Macadamia"> Macadamia</label>
-          <div class="row"><input type="text" name="qty_macadamia" placeholder="Qty (e.g. 5kg)"></div>
-
-          <label><input type="checkbox" name="items" value="Seedlings"> Seedlings / Grafted Trees</label>
-          <div class="row"><input type="text" name="qty_seedlings" placeholder="Qty (e.g. 20 seedlings)"></div>
+        <div style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap">
+          <button class="btn" type="submit">Send Email</button>
+          <a class="btn" href="#" id="whatsappOrder">WhatsApp</a>
         </div>
-
-        <label for="message">Any special instructions / delivery location</label>
-        <textarea id="message" name="message" rows="3" placeholder="Delivery or collection details"></textarea>
-
-        <div style="margin-top:0.8rem;display:flex;gap:0.6rem;flex-wrap:wrap">
-          <button class="btn" type="submit">Send Order by Email</button>
-          <a class="btn" href="#" id="whatsappOrder">Send via WhatsApp</a>
-          <a class="btn" href="tel:+254768261294">Call to confirm</a>
-        </div>
-
       </form>
     </section>
-
   </main>
 
   <footer>
     <div class="container">
-      <p>&copy; 2024 Kamburas — Kavutiri, Embu · Phone: <a href="tel:+254768261294">+254 768 261 294</a> · Email: <a href="mailto:dougiemutua@gmail.com">dougiemutua@gmail.com</a></p>
-      <p style="color:var(--muted);font-size:0.9rem;margin-top:0.4rem">We are committed to youth training, sustainable propagation and quality produce. Visit or contact us to learn about internships and nursery training programs.</p>
+      <p>&copy; 2024 Kamburas — Kavutiri, Embu</p>
+      <p style="color:var(--muted);font-size:0.9rem">Youth training · Sustainable farming · Propagation</p>
     </div>
   </footer>
 
   <script>
-    // Simple accordion behaviour
-    document.querySelectorAll('.accordion .item button').forEach(btn=>{
+    document.querySelectorAll('.accordion button').forEach(btn=>{
       btn.addEventListener('click',()=>{
         const expanded = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', String(!expanded));
         const content = btn.nextElementSibling;
-        if(content) content.style.display = expanded ? 'none' : 'block';
+        content.style.display = expanded ? 'none' : 'block';
       });
-    });
-
-    // Build mailto with selected items from the form
-    function handleOrder(e){
-      e.preventDefault();
-      const form = e.target;
-      const name = encodeURIComponent(form.name.value.trim());
-      const phone = encodeURIComponent(form.phone.value.trim());
-      const message = encodeURIComponent(form.message.value.trim());
-
-      // collect selected items and quantities
-      const selected = [];
-      const checkboxes = [...form.querySelectorAll('input[type="checkbox"][name="items"]')];
-      checkboxes.forEach(cb=>{
-        if(cb.checked){
-          const key = cb.value.toLowerCase().replace(/\s+/g,'_');
-          const qty = form.querySelector('[name="qty_'+key+'"]').value || '';
-          selected.push(cb.value + (qty?(' — '+qty):''));
-        }
-      });
-
-      const bodyLines = [];
-      bodyLines.push('Name: ' + decodeURIComponent(name));
-      bodyLines.push('Phone: ' + decodeURIComponent(phone));
-      bodyLines.push('Products:');
-      if(selected.length) selected.forEach(s=>bodyLines.push('- ' + s));
-      else bodyLines.push('- (no items selected)');
-      if(message) bodyLines.push('\nNotes: ' + decodeURIComponent(message));
-      bodyLines.push('\nLocation: Kavutiri, Embu (please add more location details if needed)');
-
-      const body = encodeURIComponent(bodyLines.join('\n'));
-      const subject = encodeURIComponent('Order from Kamburas Farms');
-
-      // email to the site contact (uses the user's known email)
-      const mailto = 'mailto:dougiemutua@gmail.com?subject=' + subject + '&body=' + body;
-      window.location.href = mailto;
-      return false;
-    }
-
-    // Whatsapp order link builder
-    document.getElementById('whatsappOrder').addEventListener('click', function(e){
-      e.preventDefault();
-      const form = document.getElementById('orderForm');
-      const name = form.name.value.trim();
-      const phone = form.phone.value.trim();
-      const message = form.message.value.trim();
-      const selected = [];
-      const checkboxes = [...form.querySelectorAll('input[type="checkbox"][name="items"]')];
-      checkboxes.forEach(cb=>{
-        if(cb.checked){
-          const key = cb.value.toLowerCase().replace(/\s+/g,'_');
-          const qty = form.querySelector('[name="qty_'+key+'"]').value || '';
-          selected.push(cb.value + (qty?(' — '+qty):''));
-        }
-      });
-      let text = 'Order from Kamburas%5CnName: ' + encodeURIComponent(name) + '%5CnPhone: ' + encodeURIComponent(phone) + '%5CnProducts:%5Cn';
-      if(selected.length) selected.forEach(s=>{ text += encodeURIComponent('- ' + s) + '%5Cn'; });
-      else text += encodeURIComponent('- (no items selected)') + '%5Cn';
-      if(message) text += '%5CnNotes: ' + encodeURIComponent(message);
-
-      const wa = 'https://wa.me/254768261294?text=' + text;
-      window.open(wa,'_blank');
     });
   </script>
 </body>
