@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kavutiri Business Hub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; 
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #2c6e49;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background: #eee;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #2c6e49;
+      font-weight: bold;
+    }
+    .category {
+      padding: 2rem;
+    }
+    .category h2 {
+      border-bottom: 2px solid #2c6e49;
+      padding-bottom: 0.5rem;
+      color: #2c6e49;
+    }
+    .business {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .business img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .business-info {
+      flex: 1;
+    }
+    .business-info h3 {
+      margin: 0;
+      color: #2c6e49;
+    }
+    .business-info p {
+      margin: 0.3rem 0;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #2c6e49;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Kavutiri Business Hub</h1>
+    <p>Connecting local businesses, farms, and services in Embu, Kenya</p>
+  </header>
+
+  <nav>
+    <a href="#shops">Shops</a>
+    <a href="#farms">Farms</a>
+    <a href="#boda">Boda Boda</a>
+    <a href="#schools">Schools</a>
+    <a href="#churches">Churches</a>
+    <a href="#hotels">Hotels</a>
+    <a href="#barbers">Barbers</a>
+    <a href="#restaurants">Restaurants</a>
+  </nav>
+
+  <main id="content"></main>
+
+  <footer>
+    <p>&copy; 2025 Kavutiri Business Hub | Empowering Local Business</p>
+  </footer>
+
+  <script>
+    async function loadBusinesses() {
+      const response = await fetch('businesses.json');
+      const data = await response.json();
+      const content = document.getElementById('content');
+      content.innerHTML = '';
+
+      for (const category in data) {
+        const section = document.createElement('section');
+        section.id = category;
+        section.className = 'category';
+
+        const h2 = document.createElement('h2');
+        h2.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        section.appendChild(h2);
+
+        data[category].forEach(business => {
+          const div = document.createElement('div');
+          div.className = 'business';
+
+          const img = document.createElement('img');
+          img.src = business.photo || 'placeholder.jpg';
+          img.alt = business.name;
+
+          const info = document.createElement('div');
+          info.className = 'business-info';
+
+          const name = document.createElement('h3');
+          name.textContent = business.name;
+
+          const phone = document.createElement('p');
+          phone.innerHTML = `<strong>Phone:</strong> ${business.phone}`;
+
+          const location = document.createElement('p');
+          location.innerHTML = `<strong>Location:</strong> <a href="${business.map}" target="_blank">View on Map</a>`;
+
+          const story = document.createElement('p');
+          story.innerHTML = `<em>${business.story}</em>`;
+
+          info.appendChild(name);
+          info.appendChild(phone);
+          info.appendChild(location);
+          info.appendChild(story);
+
+          div.appendChild(img);
+          div.appendChild(info);
+
+          section.appendChild(div);
+        });
+
+        content.appendChild(section);
+      }
+    }
+
+    loadBusinesses();
+  </script>
+</body>
+</html>

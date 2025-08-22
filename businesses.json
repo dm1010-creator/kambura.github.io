@@ -1,0 +1,27 @@
+{
+  "shops": [
+    {
+      "name": "Kavutiri General Store",
+      "phone": "+254 712 345 678",
+      "map": "https://maps.google.com?q=Kavutiri+Embu",
+      "photo": "shop1.jpg",
+      "story": "A family-run shop selling daily household goods and farming supplies."
+    },
+    {
+      "name": "Embu Electronics",
+      "phone": "+254 799 111 222",
+      "map": "https://maps.google.com?q=Embu+Electronics",
+      "photo": "shop2.jpg",
+      "story": "Electronics and phone accessories shop serving the Kavutiri community."
+    }
+  ],
+  "farms": [
+    {
+      "name": "Green Valley Avocado Farm",
+      "phone": "+254 722 333 444",
+      "map": "https://maps.google.com?q=Green+Valley+Farm+Kavutiri",
+      "photo": "farm1.jpg",
+      "story": "Producers of high-quality Hass avocados and macadamia for local and export markets."
+    }
+  ]
+}
