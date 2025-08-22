@@ -7,26 +7,37 @@ body {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9f5e1 100%);
     min-height: 100vh;
     letter-spacing: 0.02em;
+    background-attachment: fixed;
+    transition: background 0.5s ease-in-out;
 }
 
+/* HEADER */
 header {
-    background-color: #5a8d3e; /* Avocado green */
+    background: linear-gradient(90deg, #5a8d3e, #7fbf4d);
     color: #fff;
-    padding: 1em 0;
+    padding: 1.5em 0;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2.3em;
+    letter-spacing: 1px;
+    animation: fadeIn 1.2s ease;
 }
 
+/* NAVIGATION */
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 1em 0 0 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 nav li {
@@ -37,31 +48,97 @@ nav a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease;
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+nav a::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0%;
+    background: #d1e7c5;
+    transition: width 0.3s;
+    margin: auto;
 }
 
 nav a:hover {
-    color: #d1e7c5; /* A lighter green for hover effect */
+    color: #d1e7c5;
+    transform: scale(1.05);
 }
 
+nav a:hover::after {
+    width: 100%;
+}
+
+/* MAIN CONTENT */
 main {
     padding: 2em;
-    max-width: 800px;
-    margin: 20px auto;
+    max-width: 900px;
+    margin: 30px auto;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    animation: fadeUp 1.2s ease;
 }
 
 main h2 {
-    color: #385a22; /* A darker green for headings */
-    border-bottom: 2px solid #5a8d3e;
+    color: #385a22;
+    border-bottom: 3px solid #5a8d3e;
     padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    font-size: 1.6em;
 }
 
+/* FOOTER */
 footer {
     text-align: center;
-    padding: 1em 0;
-    background-color: #e9ecef;
-    color: #6c757d;
-    margin-top: 20px;
+    padding: 1.2em 0;
+    background-color: #f0f5ef;
+    color: #4a5d48;
+    margin-top: 40px;
+    font-size: 0.95em;
+    border-top: 2px solid #d1e7c5;
+}
+
+/* BUTTONS */
+button, .btn {
+    background: #5a8d3e;
+    color: #fff;
+    border: none;
+    padding: 0.6em 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover, .btn:hover {
+    background: #6da94f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(90,141,62,0.3);
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(-20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+@keyframes fadeUp {
+    from {opacity:0; transform:translateY(30px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    nav li {
+        margin: 8px;
+    }
+    main {
+        padding: 1.2em;
+    }
 }
