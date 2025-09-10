@@ -1,0 +1,23 @@
+librosa
+soundfile
+numpy
+pydub
+torch
+torchaudio
+scipy
+PyMuPDF
+nltk
+argostranslate
+Pillow
+pytesseract
+tenacity
+python-dotenv
+pywin32; sys_platform == "win32"
+librosa
+soundfile
+numpy
+pydub
+scipy
+torch
+torchaudio
+nltk
