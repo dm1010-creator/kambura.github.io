@@ -1,0 +1,5 @@
+cmake
+pkg-config
+build-essential
+git
+curl
