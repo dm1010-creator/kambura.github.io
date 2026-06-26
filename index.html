@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>GIBBS QISHR — Kavutiri, Kirinyaga, Kenya</title>
 <style>
-/* ═══════════════════════════════════════════════════
-   TOKENS
-   Palette: husk-amber, cherry-red, charcoal, cream, bone
-   Type: display=serif caps, body=Georgia
-   Signature: the fruit cross-section SVG that reads as
-   both a label illustration and a map marker
-═══════════════════════════════════════════════════ */
+/* Light · Natural theme
+   Palette: warm-cream, husk-amber, terracotta, soft-forest, warm-gray
+   Preserve serif display type and label illustration
+*/
 :root {
-  --amber:      #8B5E2A;
-  --amber-mid:  #C8922A;
-  --amber-lite: #F5EDD8;
-  --cherry:     #C0392B;
-  --cherry-dim: #8B2020;
-  --gold:       #dfba73;
-  --charcoal:   #111110;
-  --panel:      #1a1a18;
-  --panel-mid:  #222220;
+  --bg:         #fbf7f2; /* page background — warm cream */
+  --amber:      #8B5E2A; /* husk amber (accent) */
+  --amber-mid:  #C08B3A; /* warmer mid amber */
+  --amber-lite: #FFF6E6;
+  --cherry:     #A83E35; /* terracotta/cherry */
+  --cherry-dim: #7A2F29;
+  --gold:       #B7792F; /* warm gold for headings */
+  --charcoal:   #2b2a28; /* primary text (soft black) */
+  --panel:      #ffffff; /* card background */
+  --panel-mid:  #fbf9f5; /* subtle variation */
   --cream:      #f4ebd0;
-  --bone:       #e6dfd3;
-  --muted:      #a49e94;
-  --border:     rgba(223,186,115,0.25);
-  --green-ke:   #006600;
+  --bone:       #e9e2d6;
+  --muted:      #7a6f63; /* muted explanatory text */
+  --border:     rgba(120,90,50,0.10); /* soft border */
+  --green-ke:   #006600; /* Kenya stripe green */
   --serif: Georgia, 'Times New Roman', serif;
   --sans:  'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -36,11 +34,13 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--charcoal);
-  color: var(--bone);
+  background: var(--bg);
+  color: var(--charcoal);
   font-family: var(--serif);
   line-height: 1.65;
   font-size: 16px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
   overflow-x: hidden;
 }
 
@@ -59,6 +59,7 @@ body {
     var(--green-ke) 0%,  var(--green-ke) 33.3%,
     var(--cherry)   33.3%, var(--cherry)  66.6%,
     #111110         66.6%, #111110        100%);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
 }
 
 /* ══════════════════════════════════════════════════
@@ -70,6 +71,7 @@ body {
   border-bottom: 1px solid var(--border);
   position: relative;
   overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,250,242,0.6) 0%, transparent 60%);
 }
 
 .hero::before {
@@ -77,14 +79,14 @@ body {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 50% 0%,
-    rgba(139,94,42,0.18) 0%, transparent 70%);
+    rgba(192,140,72,0.10) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .hero-eyebrow {
   font-family: var(--sans);
   font-size: 0.72rem;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 16px;
@@ -94,7 +96,7 @@ body {
   font-size: clamp(3rem, 10vw, 6rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--amber-mid);
   line-height: 1;
   margin-bottom: 4px;
 }
@@ -104,8 +106,8 @@ body {
   font-size: clamp(1rem, 3vw, 1.5rem);
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: var(--cream);
-  font-weight: 300;
+  color: var(--muted);
+  font-weight: 400;
   margin-bottom: 28px;
 }
 
@@ -127,8 +129,8 @@ body {
 
 .hero-gi-badge {
   display: inline-block;
-  background: var(--amber);
-  color: var(--cream);
+  background: var(--amber-lite);
+  color: var(--amber-mid);
   font-family: var(--sans);
   font-size: 0.7rem;
   letter-spacing: 0.22em;
@@ -136,6 +138,7 @@ body {
   padding: 7px 20px;
   border-radius: 2px;
   margin-bottom: 10px;
+  border: 1px solid rgba(120,90,50,0.07);
 }
 
 .hero-coords {
@@ -159,7 +162,7 @@ body {
 
 .philosophy-quote {
   font-size: clamp(1.05rem, 2.5vw, 1.4rem);
-  color: var(--cream);
+  color: var(--charcoal);
   max-width: 680px;
   margin: 0 auto 16px;
 }
@@ -195,7 +198,7 @@ body {
 }
 
 /* ══════════════════════════════════════════════════
-   GI EXPLAINER — "THE NAME IS THE ARGUMENT"
+   GI EXPLAINER
 ══════════════════════════════════════════════════ */
 .gi-section {
   padding: 72px 0;
@@ -212,15 +215,15 @@ body {
 @media(max-width:700px){ .gi-grid { grid-template-columns: 1fr; gap:32px; } }
 
 .gi-text p {
-  color: var(--bone);
+  color: var(--charcoal);
   margin-bottom: 14px;
   font-size: 1rem;
 }
 
-.gi-text strong { color: var(--cream); }
+.gi-text strong { color: var(--charcoal); }
 
 .gi-table-wrap {
-  background: var(--panel);
+  background: var(--panel-mid);
   border: 1px solid var(--border);
   border-radius: 3px;
   overflow: hidden;
@@ -233,8 +236,8 @@ body {
 }
 
 .gi-table thead th {
-  background: var(--amber);
-  color: var(--cream);
+  background: var(--amber-mid);
+  color: #fff;
   text-align: left;
   padding: 10px 14px;
   font-family: var(--sans);
@@ -245,12 +248,13 @@ body {
 
 .gi-table tbody td {
   padding: 10px 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  color: var(--bone);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  color: var(--charcoal);
+  background: transparent;
 }
 
 .gi-table tbody tr:last-child td {
-  background: rgba(139,94,42,0.14);
+  background: rgba(192,140,72,0.06);
   color: var(--gold);
   font-weight: bold;
 }
@@ -291,8 +295,8 @@ body {
   text-align: center;
 }
 
-.metric-card.accent-cherry { border-color: rgba(192,57,43,0.5); }
-.metric-card.accent-green  { border-color: rgba(0,102,0,0.5); }
+.metric-card.accent-cherry { border-color: rgba(168,62,53,0.12); }
+.metric-card.accent-green  { border-color: rgba(0,102,0,0.10); }
 
 .metric-val {
   font-size: 1.6rem;
@@ -322,8 +326,8 @@ body {
 
 @media(max-width:700px){ .soil-body { grid-template-columns:1fr; } }
 
-.soil-body p { color: var(--bone); margin-bottom: 12px; font-size: 0.95rem; }
-.soil-body strong { color: var(--cream); }
+.soil-body p { color: var(--charcoal); margin-bottom: 12px; font-size: 0.95rem; }
+.soil-body strong { color: var(--charcoal); }
 
 .soil-data-table {
   width: 100%;
@@ -333,7 +337,7 @@ body {
 
 .soil-data-table td {
   padding: 7px 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
 }
 
 .soil-data-table td:first-child {
@@ -344,7 +348,7 @@ body {
   white-space: nowrap;
 }
 
-.soil-data-table td:last-child { color: var(--bone); }
+.soil-data-table td:last-child { color: var(--charcoal); }
 
 .soil-data-table tr.soil-highlight td { color: var(--gold); font-weight: bold; }
 
@@ -354,7 +358,7 @@ body {
 .ritual-section {
   padding: 72px 0;
   border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, var(--charcoal) 0%, var(--panel) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, var(--panel-mid) 100%);
 }
 
 .ritual-grid {
@@ -409,11 +413,11 @@ body {
   margin-bottom: 4px;
 }
 
-.t-body { color: var(--bone); font-size: 0.95rem; }
+.t-body { color: var(--charcoal); font-size: 0.95rem; }
 
 .question-card {
-  background: var(--panel-mid);
-  border: 1px dashed rgba(223,186,115,0.35);
+  background: var(--panel);
+  border: 1px dashed rgba(183,129,67,0.12);
   border-radius: 3px;
   padding: 28px 24px;
   margin-top: 8px;
@@ -432,7 +436,7 @@ body {
 .question-text {
   font-size: 1.25rem;
   font-style: italic;
-  color: var(--cream);
+  color: var(--charcoal);
   line-height: 1.5;
 }
 
@@ -457,13 +461,13 @@ body {
 
 .why-table tbody td {
   padding: 11px 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  color: var(--bone);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  color: var(--charcoal);
 }
 
 .why-table tr.why-highlight td {
-  background: rgba(139,94,42,0.13);
-  color: var(--cream);
+  background: rgba(183,129,67,0.06);
+  color: var(--charcoal);
   font-weight: bold;
 }
 
@@ -485,7 +489,7 @@ body {
   max-width: 620px;
   margin: 0 auto 40px;
   text-align: center;
-  color: var(--bone);
+  color: var(--charcoal);
   font-size: 1rem;
 }
 
@@ -493,6 +497,7 @@ body {
 
 .qa-item {
   border-bottom: 1px solid var(--border);
+  background: transparent;
 }
 
 .qa-q {
@@ -512,7 +517,7 @@ body {
   line-height: 1.4;
 }
 
-.qa-q:hover { color: var(--cream); }
+.qa-q:hover { color: var(--charcoal); }
 
 .qa-q .arrow {
   font-size: 0.85rem;
@@ -523,13 +528,13 @@ body {
 }
 
 .qa-item.open .qa-q .arrow { transform: rotate(180deg); }
-.qa-item.open .qa-q { color: var(--cream); }
+.qa-item.open .qa-q { color: var(--charcoal); }
 
 .qa-a {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease, padding 0.25s ease;
-  color: var(--bone);
+  color: var(--charcoal);
   font-size: 0.95rem;
   line-height: 1.7;
   padding: 0 0 0 0;
@@ -540,7 +545,7 @@ body {
   padding: 0 0 20px 0;
 }
 
-.qa-a strong { color: var(--cream); }
+.qa-a strong { color: var(--charcoal); }
 
 /* ══════════════════════════════════════════════════
    LABEL ANATOMY
@@ -562,7 +567,7 @@ body {
   .label-svg-wrap { text-align: center; }
 }
 
-.label-svg-wrap svg { filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7)); }
+.label-svg-wrap svg { filter: drop-shadow(0 6px 18px rgba(0,0,0,0.08)); }
 
 .label-elements { list-style: none; }
 
@@ -593,14 +598,14 @@ body {
 
 .le-val {
   font-size: 0.88rem;
-  color: var(--bone);
+  color: var(--charcoal);
 }
 
 /* ══════════════════════════════════════════════════
    PRODUCT SPEC BAR
 ══════════════════════════════════════════════════ */
 .spec-bar {
-  background: var(--panel);
+  background: var(--panel-mid);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 32px 24px;
@@ -626,7 +631,7 @@ body {
 
 .spec-val {
   font-size: 0.92rem;
-  color: var(--cream);
+  color: var(--charcoal);
 }
 
 /* ══════════════════════════════════════════════════
@@ -681,8 +686,8 @@ body {
 
 .btn-primary {
   display: inline-block;
-  background: var(--amber);
-  color: var(--cream);
+  background: var(--amber-mid);
+  color: #fff;
   font-family: var(--sans);
   font-size: 0.78rem;
   letter-spacing: 0.2em;
@@ -696,7 +701,7 @@ body {
   transition: background 0.2s;
 }
 
-.btn-primary:hover { background: var(--amber-mid); }
+.btn-primary:hover { background: var(--amber); }
 
 /* ══════════════════════════════════════════════════
    FOOTER / MANIFESTO
@@ -736,8 +741,8 @@ footer {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(17,17,16,0.95);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--border);
   padding: 12px 24px;
 }
@@ -773,7 +778,7 @@ footer {
   transition: color 0.2s;
 }
 
-.nav-links a:hover { color: var(--cream); }
+.nav-links a:hover { color: var(--charcoal); }
 
 @media(max-width:600px){
   .nav-links { display: none; }
@@ -828,8 +833,8 @@ footer {
        role="img" aria-label="Coffee cherry cross-section — the fruit anatomy of QISHR">
     <defs>
       <radialGradient id="cherryGrad" cx="50%" cy="45%">
-        <stop offset="0%" stop-color="#d9534f"/>
-        <stop offset="100%" stop-color="#8B2020"/>
+        <stop offset="0%" stop-color="#E08276"/>
+        <stop offset="100%" stop-color="#A83E35"/>
       </radialGradient>
     </defs>
     <!-- Outer cherry -->
@@ -894,7 +899,7 @@ footer {
         <strong>With a GI, the Kavutiri name is the product.</strong></p>
 
         <p style="margin-top:20px; padding:16px; border-left:3px solid var(--amber);
-           background:rgba(139,94,42,0.08); font-size:0.92rem;">
+           background:rgba(192,140,72,0.06); font-size:0.92rem;">
           This GI is not owned by one person. It belongs to every
           farmer on this land. Registration with <strong>KIPI</strong>
           (Kenya Industrial Property Institute) makes the name
@@ -981,7 +986,7 @@ footer {
         acids in the fruit wall — the part that becomes QISHR husk.</p>
 
         <p style="padding:14px; border-left:3px solid var(--cherry);
-           background:rgba(192,57,43,0.07); font-size:0.9rem; margin-top:16px;">
+           background:rgba(168,62,53,0.06); font-size:0.9rem; margin-top:16px;">
           <strong style="color:var(--cherry);">Scarcity 3.70×</strong> — this Nitisol type
           is nearly four times rarer across Kenya than the national average.
           Kavutiri's soil is not ordinary. The label has the right to say so.
@@ -1306,7 +1311,7 @@ footer {
             <clipPath id="lc"><rect x="0" y="0" width="185" height="270" rx="6"/></clipPath>
           </defs>
           <!-- Background -->
-          <rect x="0" y="0" width="185" height="270" rx="6" fill="#F5EDD8" clip-path="url(#lc)"/>
+          <rect x="0" y="0" width="185" height="270" rx="6" fill="#FFF8EE" clip-path="url(#lc)"/>
           <!-- Border -->
           <rect x="2" y="2" width="181" height="266" rx="5"
                 fill="none" stroke="#8B5E2A" stroke-width="1"/>
@@ -1334,7 +1339,7 @@ footer {
           </text>
 
           <!-- Cherry cross-section -->
-          <ellipse cx="92" cy="120" rx="40" ry="38" fill="#C0392B" stroke="#8B2020" stroke-width="0.8"/>
+          <ellipse cx="92" cy="120" rx="40" ry="38" fill="#A83E35" stroke="#7A2F29" stroke-width="0.8"/>
           <ellipse cx="92" cy="120" rx="30" ry="28" fill="#E8724A"/>
           <ellipse cx="92" cy="120" rx="21" ry="19" fill="#D4A96A" stroke="#8B5E2A" stroke-width="0.6"/>
           <ellipse cx="92" cy="120" rx="14" ry="12" fill="#BFA882"/>
@@ -1348,7 +1353,7 @@ footer {
                 font-family="Georgia,serif" font-size="6.5" fill="#8B5E2A" font-style="italic">dried husk</text>
 
           <!-- Tagline -->
-          <rect x="8" y="162" width="169" height="16" fill="rgba(139,94,42,0.1)"/>
+          <rect x="8" y="162" width="169" height="16" fill="rgba(139,94,42,0.06)"/>
           <text x="92" y="174" text-anchor="middle"
                 font-family="Georgia,serif" font-size="7.5" fill="#5C3A10" font-style="italic">
             Coffee cherry husk infusion
@@ -1489,7 +1494,7 @@ footer {
         means the European market is legally open. Kavutiri gives buyers
         the origin story they need.</p>
       </div>
-      <div class="step-card reveal" style="border-color:rgba(192,57,43,0.4);">
+      <div class="step-card reveal" style="border-color:rgba(168,62,53,0.12);">
         <div class="step-num" style="color:var(--cherry);">→</div>
         <div class="step-head" style="color:var(--cherry);">Download the GI document</div>
         <p class="step-body">The full product positioning and GI argument —
