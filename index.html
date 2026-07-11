@@ -3,1435 +3,498 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GIBBS: Growing Knowledge Across Generations. A long-term community project in Kavutiri, Kenya, centered on sustainable agriculture, research, digital identity, and intergenerational knowledge." />
-  <title>GIBBS — Growing Knowledge Across Generations</title>
+  <meta name="description" content="GIBBS — a premium Kavutiri farm brand offering coffee, equipment, farm produce, and experiences. Product catalogue first, built to sell." />
+  <title>GIBBS — Product Catalogue First</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0a0a0a;
-      --bg-light: #1a1a1a;
-      --panel: #ffffff;
-      --panel-dark: #2a2a2a;
-      --ink: #ffffff;
-      --ink-dark: #0a0a0a;
-      --muted: #888888;
-      --line: rgba(255, 255, 255, 0.08);
-      --accent: #d4a574;
-      --accent-2: #e8b88a;
-      --green: #6bb382;
-      --red: #c85a54;
-      --gold: #f4d03f;
-      --shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
-      --radius: 24px;
-      --radius-sm: 16px;
-      --max: 1280px;
-      --serif: Georgia, "Times New Roman", serif;
-      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --duration-slow: 1.2s;
-      --duration-medium: 0.8s;
-      --duration-fast: 0.35s;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: #0a0a0a;
-      color: var(--ink);
-      font-family: var(--serif);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      transition: color var(--duration-fast) ease;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .eyebrow {
-      font-family: var(--sans);
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.72rem;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .section {
-      padding: 88px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section h2 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      line-height: 1.08;
-      margin: 10px 0 16px;
-      color: var(--ink);
-      letter-spacing: 0.01em;
-    }
-
-    .lead {
-      font-size: clamp(1.02rem, 2.1vw, 1.24rem);
-      color: #d0d0d0;
-      max-width: 72ch;
-      margin: 0;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    /* ===== HERO SEED SECTION ===== */
-    .hero-seed {
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      position: relative;
-      background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
-    }
-
-    .seed-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .seed-visual {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      margin-bottom: 40px;
-      animation: seedGrow var(--duration-slow) ease-out forwards;
-    }
-
-    @keyframes seedGrow {
-      0% {
-        transform: scale(0.3);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .seed {
-      position: absolute;
-      width: 60px;
-      height: 80px;
-      background: radial-gradient(ellipse at 40% 30%, #8b6f47, #5a4a2a);
-      border-radius: 50% 50% 50% 0;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: inset -2px -2px 8px rgba(0, 0, 0, 0.6);
-    }
-
-    .root {
-      position: absolute;
-      background: linear-gradient(180deg, #6bb382, #4a7a5a);
-      left: 50%;
-      top: 65%;
-      transform: translateX(-50%);
-      border-radius: 50% 50% 30% 30%;
-      animation: rootGrow var(--duration-slow) ease-out 0.4s forwards;
-      opacity: 0;
-    }
-
-    .root-main {
-      width: 8px;
-      height: 80px;
-    }
-
-    .root-left {
-      width: 4px;
-      height: 60px;
-      left: calc(50% - 20px);
-      animation-delay: 0.6s;
-    }
-
-    .root-right {
-      width: 4px;
-      height: 60px;
-      left: calc(50% + 20px);
-      animation-delay: 0.7s;
-    }
-
-    @keyframes rootGrow {
-      from {
-        height: 0;
-        opacity: 0;
-      }
-      to {
-        height: 100%;
-        opacity: 1;
-      }
-    }
-
-    .seed-text {
-      text-align: center;
-      animation: fadeInUp var(--duration-slow) ease-out 1.2s forwards;
-      opacity: 0;
-    }
-
-    .seed-text p {
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
-      margin: 20px 0;
-      color: var(--ink);
-      max-width: 40ch;
-      line-height: 1.3;
-      font-weight: 300;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: pulse 2s ease-in-out infinite;
-      font-size: 0.85rem;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 0.5;
-        transform: translateX(-50%) translateY(0);
-      }
-      50% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(8px);
-      }
-    }
-
-    /* ===== NAVIGATION ===== */
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-      background: rgba(10, 10, 10, 0.8);
-      border-bottom: 1px solid var(--line);
-      opacity: 0;
-      animation: fadeIn var(--duration-medium) ease-out 2s forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    .topbar-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      text-decoration: none;
-      font-family: var(--sans);
-    }
-
-    .brand strong {
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      color: var(--accent);
-    }
-
-    .brand span {
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 28px;
-      margin: 0;
-      padding: 0;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    nav a {
-      text-decoration: none;
-      font-family: var(--sans);
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      position: relative;
-      transition: color var(--duration-fast) ease;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width var(--duration-fast) ease;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* ===== OPENING SEQUENCE ===== */
-    .opening-vision {
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-    }
-
-    .opening-vision::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(107, 179, 130, 0.08), transparent 40%),
-        radial-gradient(circle at 80% 60%, rgba(212, 165, 116, 0.08), transparent 40%);
-      pointer-events: none;
-    }
-
-    .opening-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 70ch;
-      padding: 0 24px;
-      animation: fadeInUp var(--duration-slow) ease-out 2.2s forwards;
-      opacity: 0;
-    }
-
-    .opening-content h1 {
-      font-size: clamp(2rem, 5vw, 4rem);
-      margin: 0 0 20px;
-      line-height: 1.2;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-    }
-
-    .opening-content .pause {
-      display: block;
-      margin: 24px 0;
-      color: var(--muted);
-    }
-
-    .opening-content p {
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
-      margin: 0;
-      color: #b0b0b0;
-      line-height: 1.5;
-      font-weight: 300;
-    }
-
-    /* ===== AERIAL VIEW SECTION ===== */
-    .aerial-hero {
-      min-height: 100svh;
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #0f1419 0%, #1a1a1a 100%);
-    }
-
-    .aerial-bg {
-      position: absolute;
-      inset: 0;
-      background: 
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="mist"><stop offset="0%25" stop-color="%23336633" stop-opacity="0.3"/><stop offset="100%25" stop-color="%23000000" stop-opacity="0"/></radialGradient></defs><rect fill="%231a1a1a" width="1200" height="800"/><circle cx="200" cy="300" r="300" fill="url(%23mist)"/><circle cx="900" cy="500" r="400" fill="url(%23mist)"/><path d="M 0 400 Q 300 350 600 400 T 1200 400" stroke="%23665533" stroke-width="40" fill="none" opacity="0.2"/></svg>');
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      animation: fadeIn var(--duration-slow) ease-out 3s forwards;
-    }
-
-    .aerial-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .aerial-statement {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      margin: 0 0 40px;
-      color: var(--ink);
-      line-height: 1.2;
-      font-weight: 400;
-      max-width: 60ch;
-      animation: slideInUp var(--duration-medium) ease-out 3.2s forwards;
-      opacity: 0;
-    }
-
-    .aerial-statement .pause-lg {
-      display: block;
-      height: 60px;
-    }
-
-    .aerial-statement em {
-      font-style: normal;
-      color: var(--green);
-      font-weight: 500;
-    }
-
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ===== FOUR WORLDS MAP ===== */
-    .four-worlds {
-      padding: 88px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .worlds-intro {
-      margin-bottom: 60px;
-      animation: fadeInUp var(--duration-slow) ease-out 0.6s both;
-    }
-
-    .worlds-map {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .world-card {
-      position: relative;
-      aspect-ratio: 1;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      overflow: hidden;
-      cursor: pointer;
-      transition: all var(--duration-medium) ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-      animation: fadeInUp var(--duration-slow) ease-out both;
-    }
-
-    .world-card:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-    .world-card:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    .world-card:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-    .world-card:nth-child(4) {
-      animation-delay: 0.4s;
-    }
-
-    .world-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(212, 165, 116, 0.1), transparent 70%);
-      opacity: 0;
-      transition: opacity var(--duration-medium) ease;
-    }
-
-    .world-card:hover::before {
-      opacity: 1;
-    }
-
-    .world-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-8px);
-      box-shadow: 0 24px 48px rgba(212, 165, 116, 0.15);
-    }
-
-    .world-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      transition: transform var(--duration-medium) ease;
-    }
-
-    .world-card:hover .world-icon {
-      transform: scale(1.1);
-    }
-
-    .world-title {
-      font-family: var(--sans);
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 0 0 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .world-desc {
-      font-family: var(--sans);
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin: 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===== PRODUCTS MARKET ===== */
-    .products-market {
-      padding: 88px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .market-intro {
-      margin-bottom: 60px;
-    }
-
-    .market-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-
-    .product-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      padding: 24px;
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--duration-medium) ease;
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp var(--duration-slow) ease-out both;
-    }
-
-    .product-item:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-    .product-item:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    .product-item:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-    .product-item:nth-child(4) {
-      animation-delay: 0.4s;
-    }
-
-    .product-item::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(212, 165, 116, 0.08), transparent 70%);
-      opacity: 0;
-      transition: opacity var(--duration-medium) ease;
-    }
-
-    .product-item:hover {
-      border-color: var(--accent);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 32px rgba(212, 165, 116, 0.1);
-    }
-
-    .product-item:hover::before {
-      opacity: 1;
-    }
-
-    .product-emoji {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      display: block;
-      transition: transform var(--duration-medium) ease;
-    }
-
-    .product-item:hover .product-emoji {
-      transform: scale(1.15) rotate(5deg);
-    }
-
-    .product-name {
-      font-family: var(--sans);
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0 0 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--ink);
-    }
-
-    .product-desc {
-      font-family: var(--sans);
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin: 0 0 12px;
-    }
-
-    .product-price {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin: 0;
-    }
-
-    /* ===== GENERATIONS TIMELINE ===== */
-    .generations {
-      padding: 88px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .generations-intro {
-      margin-bottom: 60px;
-    }
-
-    .timeline-visual {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    .generation-step {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 40px;
-      align-items: center;
-      padding: 30px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--line);
-      animation: fadeInUp var(--duration-slow) ease-out both;
-      transition: all var(--duration-medium) ease;
-    }
-
-    .generation-step:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-    .generation-step:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    .generation-step:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-    .generation-step:nth-child(4) {
-      animation-delay: 0.4s;
-    }
-    .generation-step:nth-child(5) {
-      animation-delay: 0.5s;
-    }
-
-    .generation-step:hover {
-      border-color: var(--green);
-      box-shadow: 0 12px 24px rgba(107, 179, 130, 0.15);
-    }
-
-    .generation-label {
-      font-family: var(--sans);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--green);
-    }
-
-    .generation-content p {
-      margin: 0;
-      font-size: 1.05rem;
-      color: #c0c0c0;
-    }
-
-    /* ===== RESEARCH SECTION ===== */
-    .research-section {
-      padding: 88px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .research-intro {
-      margin-bottom: 60px;
-    }
-
-    .research-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .research-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      padding: 28px;
-      cursor: pointer;
-      transition: all var(--duration-medium) ease;
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp var(--duration-slow) ease-out both;
-    }
-
-    .research-item:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-    .research-item:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    .research-item:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-
-    .research-item::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(107, 179, 130, 0.1), rgba(212, 165, 116, 0.1));
-      opacity: 0;
-      transition: opacity var(--duration-medium) ease;
-    }
-
-    .research-item:hover {
-      border-color: var(--accent);
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(212, 165, 116, 0.15);
-    }
-
-    .research-item:hover::before {
-      opacity: 1;
-    }
-
-    .research-icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .research-title {
-      font-family: var(--sans);
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin: 0 0 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--ink);
-      position: relative;
-      z-index: 1;
-    }
-
-    .research-desc {
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin: 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===== BUSINESS HUB INTERACTIVE MAP ===== */
-    .business-hub-section {
-      padding: 88px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .hub-intro {
-      margin-bottom: 60px;
-    }
-
-    .hub-village {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
-      background: linear-gradient(135deg, rgba(107, 179, 130, 0.08), rgba(212, 165, 116, 0.08));
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      padding: 40px 24px;
-    }
-
-    .hub-shop {
-      aspect-ratio: 1;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all var(--duration-medium) ease;
-      flex-direction: column;
-      gap: 8px;
-      padding: 12px;
-      text-align: center;
-      animation: fadeInUp var(--duration-slow) ease-out both;
-    }
-
-    .hub-shop:nth-child(1) {
-      animation-delay: 0s;
-    }
-    .hub-shop:nth-child(2) {
-      animation-delay: 0.1s;
-    }
-    .hub-shop:nth-child(3) {
-      animation-delay: 0.2s;
-    }
-    .hub-shop:nth-child(4) {
-      animation-delay: 0.3s;
-    }
-    .hub-shop:nth-child(5) {
-      animation-delay: 0.4s;
-    }
-    .hub-shop:nth-child(6) {
-      animation-delay: 0.5s;
-    }
-
-    .hub-shop:hover {
-      background: rgba(212, 165, 116, 0.15);
-      border-color: var(--accent);
-      transform: scale(1.05);
-      box-shadow: 0 12px 24px rgba(212, 165, 116, 0.2);
-    }
-
-    .hub-shop-emoji {
-      font-size: 2rem;
-      transition: transform var(--duration-medium) ease;
-    }
-
-    .hub-shop:hover .hub-shop-emoji {
-      transform: scale(1.2);
-    }
-
-    .hub-shop-name {
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-      color: var(--ink);
-      margin: 0;
-    }
-
-    /* ===== CALL TO ACTION SECTION ===== */
-    .postcard-section {
-      padding: 88px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .postcard {
-      background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(107, 179, 130, 0.1));
-      border: 2px solid var(--accent);
-      border-radius: var(--radius);
-      padding: 60px 40px;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      animation: fadeInUp var(--duration-slow) ease-out 0.6s both;
-    }
-
-    .postcard h3 {
-      font-family: var(--sans);
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin: 0 0 20px;
-    }
-
-    .postcard-main {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin: 0 0 16px;
-      line-height: 1.2;
-      font-weight: 400;
-    }
-
-    .postcard-location {
-      font-family: var(--sans);
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin: 0 0 20px;
-      letter-spacing: 0.1em;
-    }
-
-    .postcard-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin: 28px 0;
-      font-size: 0.95rem;
-      color: var(--accent);
-    }
-
-    .postcard-contact a {
-      text-decoration: none;
-      transition: color var(--duration-fast) ease;
-    }
-
-    .postcard-contact a:hover {
-      color: var(--accent-2);
-    }
-
-    .postcard-tagline {
-      font-style: italic;
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin: 28px 0 0;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      padding: 88px 0 40px;
-      border-top: 1px solid var(--line);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(15, 95, 58, 0.08), rgba(10, 10, 10, 0.95));
-      pointer-events: none;
-    }
-
-    .footer-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .footer-legacy {
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      margin: 0 0 40px;
-      line-height: 1.4;
-      max-width: 60ch;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .footer-legacy strong {
-      color: var(--green);
-    }
-
-    .footer-info {
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin: 0 0 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .footer-brand {
-      font-family: var(--sans);
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 1.2rem;
-      color: var(--accent);
-      margin-top: 40px;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1080px) {
-      .worlds-map,
-      .market-grid,
-      .research-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .generation-step {
-        grid-template-columns: 1fr;
-      }
-
-      .generation-label {
-        text-align: center;
-      }
-
-      nav ul {
-        display: none;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .worlds-map,
-      .market-grid,
-      .research-grid,
-      .hub-village {
-        grid-template-columns: 1fr;
-      }
-
-      nav ul {
-        gap: 12px;
-        font-size: 0.65rem;
-      }
-
-      .section {
-        padding: 60px 0;
-      }
-
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .brand {
-        flex-direction: row;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .opening-content h1 {
-        font-size: 1.8rem;
-      }
-
-      .postcard {
-        margin: 0 20px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .worlds-map,
-      .market-grid,
-      .research-grid,
-      .hub-village {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .container {
-        padding: 0 16px;
-      }
-
-      .section {
-        padding: 50px 0;
-      }
-
-      .hero-seed {
-        min-height: 80svh;
-      }
-
-      .scroll-hint {
-        font-size: 0.75rem;
-      }
-
-      .world-card,
-      .product-item,
-      .research-item {
-        min-height: 200px;
-      }
+    :root{
+      --bg:#f8f5ee;
+      --panel:#ffffff;
+      --ink:#1f1f1f;
+      --muted:#6c6c6c;
+      --line:rgba(31,31,31,.10);
+      --forest:#254f35;
+      --forest-2:#315f43;
+      --coffee:#6b4b32;
+      --olive:#8d9b6a;
+      --sand:#e9dfcf;
+      --gold:#b68a56;
+      --shadow:0 18px 50px rgba(31,31,31,.10);
+      --shadow-soft:0 8px 24px rgba(31,31,31,.08);
+      --radius:28px;
+      --radius-sm:18px;
+      --max:1220px;
+      --serif:"Cormorant Garamond", Georgia, serif;
+      --sans:"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top left, rgba(141,155,106,.16), transparent 22%),
+        radial-gradient(circle at top right, rgba(182,138,86,.12), transparent 18%),
+        var(--bg);
+      color:var(--ink);
+      font-family:var(--sans);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--max); margin:0 auto; padding:0 24px}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:.74rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--forest);
+      margin-bottom:12px;
+      font-weight:800;
+    }
+    .eyebrow::before{content:""; width:28px; height:1px; background:var(--forest)}
+    h1,h2,h3{font-family:var(--serif); line-height:1.02; margin:0}
+    h1{font-size:clamp(3rem, 7vw, 6.6rem); font-weight:700; letter-spacing:-.03em}
+    h2{font-size:clamp(2rem, 4.5vw, 3.8rem); font-weight:700; letter-spacing:-.02em}
+    h3{font-size:clamp(1.35rem, 2.1vw, 2rem); font-weight:700}
+    p{margin:0}
+    .lead{font-size:clamp(1.02rem, 1.8vw, 1.2rem); color:var(--muted); max-width:72ch}
+    .section{padding:88px 0}
+    .card{
+      background:rgba(255,255,255,.72);
+      backdrop-filter:blur(10px);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-soft);
+    }
+    .btns{display:flex; gap:14px; flex-wrap:wrap; margin-top:28px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:14px 20px; border-radius:999px; border:1px solid transparent;
+      font-weight:800; letter-spacing:.01em; transition:.2s ease; cursor:pointer;
+    }
+    .btn-primary{background:var(--forest); color:#fff; box-shadow:0 12px 30px rgba(37,79,53,.2)}
+    .btn-primary:hover{transform:translateY(-2px); background:var(--forest-2)}
+    .btn-secondary{background:transparent; color:var(--forest); border-color:rgba(37,79,53,.25)}
+    .btn-secondary:hover{transform:translateY(-2px); background:rgba(37,79,53,.05)}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(248,245,238,.82);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:var(--max); margin:0 auto; padding:14px 24px;
+      display:flex; align-items:center; justify-content:space-between; gap:18px;
+    }
+    .brand{display:flex; flex-direction:column; gap:2px}
+    .brand strong{
+      font-size:1rem; letter-spacing:.24em; text-transform:uppercase; color:var(--forest);
+    }
+    .brand span{font-size:.72rem; color:var(--muted); letter-spacing:.08em}
+    nav ul{list-style:none; display:flex; gap:22px; padding:0; margin:0; flex-wrap:wrap; justify-content:flex-end}
+    nav a{font-size:.76rem; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); font-weight:700}
+    nav a:hover{color:var(--forest)}
+
+    /* Hero */
+    .hero{padding:36px 0 28px}
+    .hero-grid{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:stretch;
+    }
+    .hero-copy{
+      padding:42px;
+      min-height:540px;
+      display:flex; flex-direction:column; justify-content:space-between;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.58)),
+        radial-gradient(circle at 80% 20%, rgba(141,155,106,.20), transparent 24%),
+        radial-gradient(circle at 20% 80%, rgba(182,138,86,.16), transparent 22%);
+    }
+    .hero-copy .top{max-width:68ch}
+    .hero-copy h1{max-width:11ch}
+    .hero-copy .lede{margin-top:20px; font-size:clamp(1.02rem, 1.5vw, 1.12rem); color:var(--muted); max-width:60ch}
+    .hero-metrics{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px;
+    }
+    .metric{
+      padding:16px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72)
+    }
+    .metric strong{display:block; font-size:1.3rem; color:var(--forest); font-family:var(--serif)}
+    .metric span{font-size:.82rem; color:var(--muted)}
+    .hero-art{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(31,31,31,.08), rgba(31,31,31,.02)),
+        linear-gradient(135deg, #d8ccb6, #f4efe6);
+      position:relative;
+      overflow:hidden;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      min-height:540px;
+    }
+    .hero-art::before{
+      content:""; position:absolute; inset:18px;
+      border:1px solid rgba(31,31,31,.08); border-radius:24px;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(37,79,53,.18), transparent 18%),
+        radial-gradient(circle at 60% 45%, rgba(107,75,50,.16), transparent 18%),
+        radial-gradient(circle at 75% 60%, rgba(182,138,86,.18), transparent 20%),
+        linear-gradient(145deg, rgba(255,255,255,.35), rgba(255,255,255,.05));
+    }
+    .hero-art .badge{
+      position:relative; z-index:1;
+      align-self:flex-start;
+      background:rgba(255,255,255,.76);
+      border:1px solid rgba(31,31,31,.08);
+      border-radius:999px; padding:10px 14px; font-size:.8rem; font-weight:800; color:var(--forest)
+    }
+    .hero-art .note{
+      position:relative; z-index:1;
+      margin-top:auto; padding-top:18px; color:var(--ink); max-width:30ch;
+    }
+    .hero-art .note strong{display:block; font-family:var(--serif); font-size:2.4rem; line-height:1; margin-top:8px}
+
+    /* Catalogue */
+    .catalogue{padding-top:18px}
+    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:24px}
+    .catalogue-grid{
+      display:grid; grid-template-columns:repeat(12, 1fr); gap:18px;
+    }
+    .product-card{
+      grid-column:span 4;
+      padding:20px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.82);
+      box-shadow:var(--shadow-soft);
+      transition:.22s ease;
+      display:flex; flex-direction:column; gap:14px;
+      min-height:100%;
+    }
+    .product-card:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
+    .product-media{
+      aspect-ratio:4/3;
+      border-radius:20px;
+      overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(37,79,53,.16), rgba(107,75,50,.10)),
+        linear-gradient(45deg, #e7dccb, #fdfbf7);
+      border:1px solid rgba(31,31,31,.06);
+      position:relative;
+    }
+    .product-media .emoji{
+      position:absolute; inset:0; display:grid; place-items:center;
+      font-size:clamp(3rem, 5vw, 5rem);
+    }
+    .tag{
+      position:absolute; top:14px; left:14px;
+      background:rgba(255,255,255,.84);
+      padding:8px 11px; border-radius:999px; font-size:.72rem; font-weight:800; color:var(--forest);
+      border:1px solid rgba(31,31,31,.08);
+    }
+    .product-meta{display:flex; align-items:flex-start; justify-content:space-between; gap:16px}
+    .product-title{font-size:1.7rem}
+    .product-price{font-weight:900; color:var(--coffee); font-size:1.05rem; white-space:nowrap}
+    .product-desc{color:var(--muted); font-size:.96rem}
+    .product-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
+    .mini{padding:11px 14px; font-size:.82rem}
+    .catalogue-grid .wide{grid-column:span 6}
+    .catalogue-grid .tall{grid-column:span 6}
+
+    /* Merch strip */
+    .strip{
+      display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-top:18px;
+    }
+    .strip .item{
+      padding:18px; border-radius:22px; background:rgba(255,255,255,.7); border:1px solid var(--line)
+    }
+    .strip .item strong{display:block; color:var(--forest); font-size:1.15rem}
+    .strip .item span{display:block; color:var(--muted); font-size:.88rem}
+
+    /* Experiences */
+    .experience-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+    .experience-card{padding:24px; border-radius:24px; border:1px solid var(--line); background:rgba(255,255,255,.76)}
+    .experience-card .icon{font-size:2rem; margin-bottom:10px}
+    .experience-card p{color:var(--muted); margin-top:10px}
+
+    /* Story and research */
+    .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start}
+    .panel{padding:28px; border-radius:28px; border:1px solid var(--line); background:rgba(255,255,255,.78)}
+    .panel p{color:var(--muted); margin-top:12px}
+    .bullets{display:grid; gap:12px; margin-top:18px}
+    .bullet{padding:14px 16px; border-radius:18px; background:rgba(37,79,53,.05); border:1px solid rgba(37,79,53,.10)}
+    .bullet strong{color:var(--forest)}
+
+    /* Contact */
+    .contact-card{
+      padding:34px;
+      background:linear-gradient(135deg, rgba(37,79,53,.96), rgba(107,75,50,.92));
+      color:#fff;
+      border-radius:34px;
+      box-shadow:var(--shadow);
+    }
+    .contact-card .lead{color:rgba(255,255,255,.82)}
+    .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:18px; margin-top:24px}
+    .contact-box{padding:18px; border-radius:20px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.12)}
+    .contact-box a{display:block; margin-top:8px; color:#fff; font-weight:800}
+    .footer{
+      padding:34px 0 44px; color:var(--muted); text-align:center;
+    }
+
+    .floating-whatsapp{
+      position:fixed; right:18px; bottom:18px; z-index:1200;
+      display:inline-flex; align-items:center; gap:10px;
+      background:#1faa59; color:#fff; padding:14px 18px; border-radius:999px;
+      box-shadow:0 16px 36px rgba(31,31,31,.22); font-weight:800;
+    }
+
+    @media (max-width:1080px){
+      .hero-grid,.two-col,.contact-grid,.experience-grid{grid-template-columns:1fr}
+      .product-card,.catalogue-grid .wide,.catalogue-grid .tall{grid-column:span 6}
+      nav ul{display:none}
+      .hero-copy,.hero-art{min-height:unset}
+    }
+    @media (max-width:768px){
+      .section{padding:66px 0}
+      .topbar-inner{flex-direction:column; align-items:flex-start}
+      .hero-copy{padding:28px}
+      .hero-metrics,.strip{grid-template-columns:1fr}
+      .product-card,.catalogue-grid .wide,.catalogue-grid .tall{grid-column:span 12}
+      .section-head{flex-direction:column; align-items:flex-start}
     }
   </style>
 </head>
 <body>
-  <!-- TOP NAVIGATION BAR -->
-  <div class="topbar">
+  <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="#top" aria-label="GIBBS homepage">
+      <a class="brand" href="#top" aria-label="GIBBS home">
         <strong>GIBBS</strong>
-        <span>Growing Knowledge Across Generations</span>
+        <span>Product-first farm brand</span>
       </a>
       <nav aria-label="Primary">
         <ul>
-          <li><a href="#worlds">Gateway</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#generations">Generations</a></li>
+          <li><a href="#catalogue">Catalogue</a></li>
+          <li><a href="#bundles">Bundles</a></li>
+          <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#story">Story</a></li>
           <li><a href="#research">Research</a></li>
-          <li><a href="#hub">Community</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
-  </div>
+  </header>
 
-  <main>
-    <!-- HERO: SEED SEQUENCE -->
-    <section class="hero-seed" id="top">
-      <div class="seed-container">
-        <div class="seed-visual">
-          <div class="seed"></div>
-          <div class="root root-main"></div>
-          <div class="root root-left"></div>
-          <div class="root root-right"></div>
-        </div>
-        <div class="seed-text">
-          <p>Every civilization begins with something small.</p>
-        </div>
-        <div class="scroll-hint">
-          Scroll to continue
-        </div>
-      </div>
-    </section>
-
-    <!-- OPENING VISION -->
-    <section class="opening-vision">
-      <div class="opening-content">
-        <h1>
-          We don't grow crops.
-          <span class="pause"></span>
-          <em style="color: var(--green);">We grow communities.</em>
-        </h1>
-      </div>
-    </section>
-
-    <!-- AERIAL HERO -->
-    <section class="aerial-hero">
-      <div class="aerial-bg"></div>
-      <div class="aerial-content">
-        <div class="aerial-statement">
-          GIBBS is a long-term community project focused on <em>self-sustainability</em> through knowledge, research, stewardship of natural resources, and a resilient digital ecosystem.
-        </div>
-      </div>
-    </section>
-
-    <!-- FOUR WORLDS (GATEWAY) -->
-    <section class="four-worlds" id="worlds">
-      <div class="container">
-        <div class="worlds-intro">
-          <div class="eyebrow">Gateway</div>
-          <h2>Enter the GIBBS ecosystem.</h2>
-          <p class="lead">
-            Each destination is a separate layer of the same project. Explore, learn, and connect with the wider community.
-          </p>
-        </div>
-        <div class="worlds-map">
-          <a class="world-card" href="harvesting.html" style="text-decoration: none;">
-            <div class="world-icon">🌱</div>
-            <h3 class="world-title">Harvesting</h3>
-            <p class="world-desc">Farming, soil, biodiversity, water, and coffee cultivation.</p>
-          </a>
-          <a class="world-card" href="production.html" style="text-decoration: none;">
-            <div class="world-icon">⚙️</div>
-            <h3 class="world-title">Production</h3>
-            <p class="world-desc">Processing, packaging, quality, and traceability.</p>
-          </a>
-          <a class="world-card" href="management.html" style="text-decoration: none;">
-            <div class="world-icon">📊</div>
-            <h3 class="world-title">Management</h3>
-            <p class="world-desc">Research, GIS, documentation, sustainability metrics.</p>
-          </a>
-          <a class="world-card" href="kavutiri_business_hub.html" style="text-decoration: none;">
-            <div class="world-icon">🌍</div>
-            <h3 class="world-title">Business Hub</h3>
-            <p class="world-desc">Local enterprises, digital identity, and community services.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRODUCTS MARKET -->
-    <section class="products-market" id="products">
-      <div class="container">
-        <div class="market-intro">
-          <div class="eyebrow">Our Products</div>
-          <h2>From the land to your cup.</h2>
-          <p class="lead">
-            Each product represents care, craftsmanship, and connection to Kavutiri.
-          </p>
-        </div>
-        <div class="market-grid">
-          <div class="product-item">
-            <span class="product-emoji">☕</span>
-            <h3 class="product-name">Dark Roast</h3>
-            <p class="product-desc">Bold. Complex. Memorable.</p>
-            <p class="product-price">KES 2,500</p>
-          </div>
-          <div class="product-item">
-            <span class="product-emoji">🫘</span>
-            <h3 class="product-name">Medium Roast</h3>
-            <p class="product-desc">Balanced. Refined. True.</p>
-            <p class="product-price">KES 2,200</p>
-          </div>
-          <div class="product-item">
-            <span class="product-emoji">☕</span>
-            <h3 class="product-name">Light Roast</h3>
-            <p class="product-desc">Bright. Floral. Delicate.</p>
-            <p class="product-price">KES 2,300</p>
-          </div>
-          <div class="product-item">
-            <span class="product-emoji">🍂</span>
-            <h3 class="product-name">Cascara</h3>
-            <p class="product-desc">Fruited. Sweet. Golden tea.</p>
-            <p class="product-price">KES 800</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GENERATIONS TIMELINE -->
-    <section class="generations" id="generations">
-      <div class="container">
-        <div class="generations-intro">
-          <div class="eyebrow">Intergenerational</div>
-          <h2>Knowledge grows with each generation.</h2>
-          <p class="lead">
-            Every generation inherits more understanding than the last. That's the promise of GIBBS.
-          </p>
-        </div>
-        <div class="timeline-visual">
-          <div class="generation-step">
-            <div class="generation-label">Grandfather</div>
-            <div class="generation-content">
-              <p>Established the land. Learned the seasons. Understood the soil.</p>
+  <main id="top">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy card">
+          <div class="top">
+            <div class="eyebrow">Kavutiri, Kenya</div>
+            <h1>Buy from the farm first.</h1>
+            <p class="lede">A premium catalogue of coffee, equipment, produce, and experiences — designed to convert visitors into customers immediately, while still carrying the GIBBS story beneath the surface.</p>
+            <div class="btns">
+              <a class="btn btn-primary" href="#catalogue">Shop Catalogue</a>
+              <a class="btn btn-secondary" href="#contact">Order / Enquire</a>
             </div>
           </div>
-          <div class="generation-step">
-            <div class="generation-label">Father</div>
-            <div class="generation-content">
-              <p>Documented the methods. Improved the systems. Built relationships.</p>
-            </div>
+          <div class="hero-metrics">
+            <div class="metric"><strong>24/7</strong><span>Catalogue access</span></div>
+            <div class="metric"><strong>Direct</strong><span>Farm-to-customer</span></div>
+            <div class="metric"><strong>Premium</strong><span>Packaging & story</span></div>
           </div>
-          <div class="generation-step">
-            <div class="generation-label">You</div>
-            <div class="generation-content">
-              <p>Record the knowledge. Share the findings. Connect to the world.</p>
-            </div>
+        </div>
+        <div class="hero-art card" aria-label="Premium product showcase">
+          <div class="badge">Best seller this season</div>
+          <div class="note">Single Origin Coffee<strong>KES 2,500</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section catalogue" id="catalogue">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Product catalogue</div>
+            <h2>Start with what people can buy.</h2>
           </div>
-          <div class="generation-step">
-            <div class="generation-label">Your Daughter</div>
-            <div class="generation-content">
-              <p>Inherit the archive. Access the research. Add to the legacy.</p>
+          <p class="lead">Clean product cards, visible pricing, and clear actions. That is the fastest path to sales.</p>
+        </div>
+
+        <div class="catalogue-grid">
+          <article class="product-card wide">
+            <div class="product-media"><span class="tag">Best seller</span><div class="emoji">☕</div></div>
+            <div class="product-meta"><h3 class="product-title">Single Origin Coffee</h3><div class="product-price">KES 2,500</div></div>
+            <p class="product-desc">Freshly roasted, Kavutiri-grown, premium profile for export and local customers.</p>
+            <div class="product-actions">
+              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Single%20Origin%20Coffee">Order now</a>
+              <a class="btn btn-secondary mini" href="#contact">Ask a question</a>
             </div>
+          </article>
+
+          <article class="product-card wide">
+            <div class="product-media"><span class="tag">Popular</span><div class="emoji">☕</div></div>
+            <div class="product-meta"><h3 class="product-title">Medium Roast</h3><div class="product-price">KES 2,200</div></div>
+            <p class="product-desc">Balanced, smooth, and versatile — ideal for everyday drinking and retail shelves.</p>
+            <div class="product-actions">
+              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Medium%20Roast">Order now</a>
+              <a class="btn btn-secondary mini" href="#contact">Bulk order</a>
+            </div>
+          </article>
+
+          <article class="product-card tall">
+            <div class="product-media"><span class="tag">Tea</span><div class="emoji">🍂</div></div>
+            <div class="product-meta"><h3 class="product-title">Cascara</h3><div class="product-price">KES 800</div></div>
+            <p class="product-desc">A floral, fruity coffee cherry tea with a clean, elegant finish.</p>
+            <div class="product-actions">
+              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Cascara">Buy cascara</a>
+            </div>
+          </article>
+
+          <article class="product-card tall">
+            <div class="product-media"><span class="tag">Gift set</span><div class="emoji">🎁</div></div>
+            <div class="product-meta"><h3 class="product-title">Coffee Gift Box</h3><div class="product-price">KES 6,500</div></div>
+            <p class="product-desc">Coffee plus moka pot, ideal for gifting, hospitality, and premium buyers.</p>
+            <div class="product-actions">
+              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Gift%20Box">Order gift box</a>
+            </div>
+          </article>
+
+          <article class="product-card tall">
+            <div class="product-media"><span class="tag">Equipment</span><div class="emoji">🫖</div></div>
+            <div class="product-meta"><h3 class="product-title">Moka Pot 3 Cup</h3><div class="product-price">KES 4,000</div></div>
+            <p class="product-desc">Classic entry point for home brewers, café customers, and gift bundles.</p>
+            <div class="product-actions">
+              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Moka%20Pot%203%20Cup">Buy equipment</a>
+            </div>
+          </article>
+
+          <article class="product-card tall">
+            <div class="product-media"><span class="tag">Fresh produce</span><div class="emoji">🥑</div></div>
+            <div class="product-meta"><h3 class="product-title">Farm Produce Box</h3><div class="product-price">From KES 1,500</div></div>
+            <p class="product-desc">Seasonal avocado, bananas, tree tomato, sweet potato, and more.</p>
+            <div class="product-actions">
+              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Farm%20Produce%20Box">Request basket</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="bundles">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Revenue bundles</div>
+            <h2>Make the basket bigger.</h2>
           </div>
-          <div class="generation-step">
-            <div class="generation-label">Her Children</div>
-            <div class="generation-content">
-              <p>Grow in a place with memory. Build on proven knowledge. Create the future.</p>
-            </div>
+          <p class="lead">Bundles lift order value and make the brand easier to buy for first-time visitors.</p>
+        </div>
+        <div class="strip">
+          <div class="item"><strong>Starter Brew Kit</strong><span>Coffee + 3 cup moka pot + guide</span></div>
+          <div class="item"><strong>Household Pack</strong><span>2 coffees + cascara + mug</span></div>
+          <div class="item"><strong>Gift Pack</strong><span>Coffee + equipment + note card</span></div>
+          <div class="item"><strong>Wholesale Box</strong><span>For cafés, hotels, and shops</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiences">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Experiences</div>
+            <h2>Sell the visit, not only the product.</h2>
+          </div>
+          <p class="lead">Farm experiences turn curiosity into bookings and strengthen trust in the products.</p>
+        </div>
+        <div class="experience-grid">
+          <div class="experience-card"><div class="icon">🌿</div><h3>Farm Tour</h3><p>Walk through coffee, macadamia, and fruit systems with a guided story of the land.</p></div>
+          <div class="experience-card"><div class="icon">☕</div><h3>Coffee Tasting</h3><p>Book tastings for guests, buyers, students, and hospitality partners.</p></div>
+          <div class="experience-card"><div class="icon">📸</div><h3>Harvest Experience</h3><p>Seasonal participation for visitors who want an immersive rural experience.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="container two-col">
+        <div class="panel">
+          <div class="eyebrow">Brand story</div>
+          <h2>Now tell the story.</h2>
+          <p>Once the catalogue has done its job, the site can slow down and explain the land, the lineage, the methods, and the philosophy behind GIBBS.</p>
+          <div class="bullets">
+            <div class="bullet"><strong>Origin:</strong> Kavutiri, Embu County, Kenya.</div>
+            <div class="bullet"><strong>Positioning:</strong> premium farm brand with digital commerce.</div>
+            <div class="bullet"><strong>Promise:</strong> honest products, visible pricing, direct contact.</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="eyebrow">What to highlight</div>
+          <h2>Trust signals that help sales.</h2>
+          <p>Use this area for certifications, processing methods, freshness notes, harvest dates, testimonials, and shipping details.</p>
+          <div class="bullets">
+            <div class="bullet"><strong>Quality:</strong> roasting date, origin, and batch notes.</div>
+            <div class="bullet"><strong>Fulfilment:</strong> pickup, local delivery, and dispatch options.</div>
+            <div class="bullet"><strong>Partnerships:</strong> cafés, hotels, gift buyers, and exporters.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- RESEARCH SECTION -->
-    <section class="research-section" id="research">
-      <div class="container">
-        <div class="research-intro">
-          <div class="eyebrow">Digital Archive</div>
-          <h2>Knowledge belongs to everyone.</h2>
-          <p class="lead">
-            Every publication, dataset, GIS layer, and experiment is documented and accessible. No login. No gatekeeping.
-          </p>
+    <section class="section" id="research">
+      <div class="container two-col">
+        <div class="panel">
+          <div class="eyebrow">Research</div>
+          <h2>Keep the serious layer, but place it below commerce.</h2>
+          <p>Research should support trust and authority, not delay the sale. Keep it clean and concise.</p>
         </div>
-        <div class="research-grid">
-          <div class="research-item">
-            <div class="research-icon">📄</div>
-            <h3 class="research-title">Publications</h3>
-            <p class="research-desc">Papers, reports, and findings from ongoing research in agriculture and sustainability.</p>
-          </div>
-          <div class="research-item">
-            <div class="research-icon">🗺️</div>
-            <h3 class="research-title">GIS & Maps</h3>
-            <p class="research-desc">Spatial data, land use analysis, and satellite imagery for environmental monitoring.</p>
-          </div>
-          <div class="research-item">
-            <div class="research-icon">📊</div>
-            <h3 class="research-title">Datasets</h3>
-            <p class="research-desc">Soil surveys, climate records, yield data, and biodiversity assessments.</p>
+        <div class="panel">
+          <div class="bullets" style="margin-top:0">
+            <div class="bullet"><strong>GIS & maps:</strong> land use, water, biodiversity.</div>
+            <div class="bullet"><strong>Datasets:</strong> yields, soil, climate, trials.</div>
+            <div class="bullet"><strong>Publications:</strong> reports, papers, and field notes.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BUSINESS HUB INTERACTIVE MAP -->
-    <section class="business-hub-section" id="hub">
+    <section class="section" id="contact">
       <div class="container">
-        <div class="hub-intro">
-          <div class="eyebrow">Community Hub</div>
-          <h2>One place. Many systems.</h2>
-          <p class="lead">
-            Kavutiri is more than a farm. It's an ecosystem where local enterprises thrive and communities grow.
-          </p>
-        </div>
-        <div class="hub-village">
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">☕</span>
-            <p class="hub-shop-name">Coffee Farmer</p>
+        <div class="contact-card">
+          <div class="eyebrow" style="color:#fff">Contact</div>
+          <h2>Make the next step easy.</h2>
+          <p class="lead">Simple contact paths improve conversions: phone, email, WhatsApp, and direct order links.</p>
+          <div class="contact-grid">
+            <div class="contact-box">
+              <strong>Call / WhatsApp</strong>
+              <a href="tel:+254722704997">+254 722 704 997</a>
+              <a href="tel:+254727149757">+254 727 149 757</a>
+            </div>
+            <div class="contact-box">
+              <strong>Email</strong>
+              <a href="mailto:groupnomad@outlook.com">groupnomad@outlook.com</a>
+              <div style="margin-top:10px; color:rgba(255,255,255,.80)">Kavutiri • Embu County • Kenya</div>
+            </div>
           </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">🐟</span>
-            <p class="hub-shop-name">Fish Farmer</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">🔧</span>
-            <p class="hub-shop-name">Mechanic</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">⚒️</span>
-            <p class="hub-shop-name">Welder</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">📚</span>
-            <p class="hub-shop-name">Teacher</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">🏡</span>
-            <p class="hub-shop-name">Guest House</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">🪵</span>
-            <p class="hub-shop-name">Carpenter</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">🧵</span>
-            <p class="hub-shop-name">Tailor</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">💡</span>
-            <p class="hub-shop-name">Electrician</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">🏥</span>
-            <p class="hub-shop-name">Health Worker</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">🌾</span>
-            <p class="hub-shop-name">Grain Miller</p>
-          </div>
-          <div class="hub-shop">
-            <span class="hub-shop-emoji">🎓</span>
-            <p class="hub-shop-name">Trainer</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- POSTCARD CALL TO ACTION -->
-    <section class="postcard-section">
-      <div class="container">
-        <div class="postcard">
-          <h3>Come Visit</h3>
-          <div class="postcard-main">GIBBS</div>
-          <div class="postcard-location">Kavutiri • Embu-County • Kenya</div>
-          <div class="postcard-contact">
-            <a href="tel:+254722704997">📞 +254 722 704 997</a>
-            <a href="tel:+254727149757">📞 +254 727 149 757</a>
-            <a href="mailto:groupnomad@outlook.com">✉️ groupnomad@outlook.com</a>
-          </div>
-          <div class="postcard-tagline">
-            "Coffee tastes better where it grows."
+          <div class="btns" style="margin-top:22px">
+            <a class="btn btn-primary" href="mailto:groupnomad@outlook.com?subject=New%20Order%20Inquiry">Place an order</a>
+            <a class="btn btn-secondary" href="#catalogue" style="border-color:rgba(255,255,255,.26); color:#fff">Back to catalogue</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-bg"></div>
+  <a class="floating-whatsapp" href="https://wa.me/254722704997" target="_blank" rel="noreferrer">WhatsApp</a>
+
+  <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-legacy">
-          We inherited the land from our <strong>ancestors.</strong>
-          <br>
-          We borrow it from our <strong>children.</strong>
-        </div>
-        <div class="footer-info">
-          Kavutiri • Embu-County • Kenya
-        </div>
-        <div class="footer-brand">GIBBS</div>
-      </div>
+      GIBBS — Growing Knowledge Across Generations • Kavutiri, Kenya
     </div>
   </footer>
-
-  <script>
-    // Intersection Observer for animations
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Observe all animated elements
-    document.querySelectorAll('.world-card, .product-item, .generation-step, .research-item, .hub-shop, .worlds-intro, .market-intro, .generations-intro, .hub-intro').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      observer.observe(el);
-    });
-
-    // Smooth scroll behavior for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#top') {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        }
-      });
-    });
-  </script>
 </body>
 </html>
