@@ -1,538 +1,904 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GIBBS — a luxury coffee and farm brand from Kavutiri, Kenya. Product catalogue first, built to sell." />
-  <title>GIBBS — Luxury Coffee Catalogue</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#efe8dc;
-      --bg-2:#f7f3eb;
-      --panel:rgba(255,255,255,.78);
-      --panel-strong:rgba(255,255,255,.92);
-      --ink:#171412;
-      --ink-soft:#403833;
-      --muted:#76695d;
-      --line:rgba(23,20,18,.10);
-      --line-strong:rgba(23,20,18,.16);
-      --forest:#2d5a44;
-      --forest-2:#3b6b53;
-      --coffee:#6b4a33;
-      --copper:#9b6c43;
-      --olive:#8a956d;
-      --sand:#dfd2bf;
-      --gold:#b78852;
-      --shadow:0 24px 60px rgba(25,20,16,.12);
-      --shadow-soft:0 12px 30px rgba(25,20,16,.08);
-      --radius:30px;
-      --radius-sm:20px;
-      --max:1220px;
-      --serif:"Cormorant Garamond", Georgia, serif;
-      --sans:"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --sans-2:"Manrope", "Inter", system-ui, sans-serif;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      background:
-        radial-gradient(circle at top left, rgba(183,136,82,.10), transparent 18%),
-        radial-gradient(circle at top right, rgba(45,90,68,.12), transparent 20%),
-        linear-gradient(180deg, #f5efe6 0%, #ece3d4 100%);
-      color:var(--ink);
-      font-family:var(--sans);
-      line-height:1.7;
-      overflow-x:hidden;
-      text-rendering:optimizeLegibility;
-      -webkit-font-smoothing:antialiased;
-    }
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-    .container{max-width:var(--max); margin:0 auto; padding:0 24px}
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      font-size:.72rem;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:var(--forest);
-      margin-bottom:14px;
-      font-weight:800;
-      font-family:var(--sans-2);
-    }
-    .eyebrow::before{content:""; width:34px; height:1px; background:linear-gradient(90deg, var(--forest), transparent)}
-    h1,h2,h3{
-      font-family:var(--serif);
-      line-height:.95;
-      margin:0;
-      letter-spacing:-.03em;
-      font-weight:700;
-    }
-    h1{font-size:clamp(3.2rem, 7vw, 6.9rem)}
-    h2{font-size:clamp(2.15rem, 4.5vw, 4rem)}
-    h3{font-size:clamp(1.35rem, 2.1vw, 2rem)}
-    p{margin:0}
-    .lead{font-size:clamp(1.02rem, 1.8vw, 1.18rem); color:var(--muted); max-width:74ch}
-    .section{padding:94px 0}
-    .card{
-      background:var(--panel);
-      backdrop-filter:blur(14px);
-      border:1px solid rgba(255,255,255,.55);
-      border-top-color:rgba(255,255,255,.85);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow-soft);
-    }
-    .btns{display:flex; gap:14px; flex-wrap:wrap; margin-top:28px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:14px 20px; border-radius:999px; border:1px solid transparent;
-      font-weight:800; letter-spacing:.01em; transition:.22s ease; cursor:pointer;
-      font-family:var(--sans-2);
-    }
-    .btn-primary{background:linear-gradient(135deg, var(--forest), #1f4331); color:#fff; box-shadow:0 16px 34px rgba(37,79,53,.22)}
-    .btn-primary:hover{transform:translateY(-2px); filter:saturate(1.04)}
-    .btn-secondary{background:transparent; color:var(--forest); border-color:rgba(37,79,53,.22)}
-    .btn-secondary:hover{transform:translateY(-2px); background:rgba(37,79,53,.05)}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rustic Garden — Kavutiri, Embu, Kenya</title>
+<meta name="description" content="Single-source Arabica coffee, sylvotherapy, natural pool, and aquaculture from Kavutiri Farm at 4,400 ft on the slopes of Mount Kenya.">
+<meta property="og:title" content="Rustic Garden — Kavutiri, Embu, Kenya">
+<meta property="og:description" content="Honey-processed Arabica, sylvotherapy, and aquaculture from the Mount Kenya foothills.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,500;9..144,0,600;9..144,0,700;9..144,1,300;9..144,1,500&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:     #16231a;
+    --forest-deep:#0e1712;
+    --forest-mid: #1c2e20;
+    --parchment:  #f2e9d8;
+    --clay:       #a3502b;
+    --gold:       #c99a4a;
+    --gold-dim:   #8a6a30;
+    --sage:       #7c9070;
+    --mist:       #cdd6c4;
+    --ink:        #1a1a15;
+    --line:       rgba(242,233,216,0.12);
+    --line-gold:  rgba(201,154,74,0.22);
+  }
 
-    .topbar{
-      position:sticky; top:0; z-index:1000;
-      background:rgba(245,239,229,.72);
-      backdrop-filter:blur(18px);
-      border-bottom:1px solid rgba(23,20,18,.08);
-    }
-    .topbar-inner{
-      max-width:var(--max); margin:0 auto; padding:14px 24px;
-      display:flex; align-items:center; justify-content:space-between; gap:18px;
-    }
-    .brand{display:flex; flex-direction:column; gap:2px}
-    .brand strong{
-      font-size:1rem; letter-spacing:.28em; text-transform:uppercase; color:var(--forest);
-      font-family:var(--sans-2);
-    }
-    .brand span{font-size:.72rem; color:var(--muted); letter-spacing:.12em; text-transform:uppercase}
-    nav ul{list-style:none; display:flex; gap:22px; padding:0; margin:0; flex-wrap:wrap; justify-content:flex-end}
-    nav a{font-size:.76rem; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); font-weight:700; font-family:var(--sans-2)}
-    nav a:hover{color:var(--forest)}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--forest);
+    color:var(--parchment);
+    font-family:'Work Sans', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.08;
+  }
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; width:100%; height:100%; object-fit:cover;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
 
-    .hero{padding:34px 0 24px}
-    .hero-grid{display:grid; grid-template-columns:1.08fr .92fr; gap:24px; align-items:stretch}
-    .hero-copy{
-      padding:48px;
-      min-height:560px;
-      display:flex; flex-direction:column; justify-content:space-between;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.62)),
-        radial-gradient(circle at 82% 16%, rgba(183,136,82,.16), transparent 22%),
-        radial-gradient(circle at 14% 84%, rgba(45,90,68,.14), transparent 20%);
-      border:1px solid rgba(255,255,255,.72);
-    }
-    .hero-copy .top{max-width:68ch}
-    .hero-copy h1{max-width:10ch}
-    .hero-copy .lede{margin-top:20px; font-size:clamp(1.03rem, 1.5vw, 1.1rem); color:var(--muted); max-width:62ch}
-    .hero-metrics{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:28px}
-    .metric{padding:16px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72); box-shadow:0 1px 0 rgba(255,255,255,.65) inset}
-    .metric strong{display:block; font-size:1.25rem; color:var(--forest); font-family:var(--serif)}
-    .metric span{font-size:.82rem; color:var(--muted)}
-    .hero-art{
-      padding:24px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.08)),
-        linear-gradient(135deg, #2b241d, #46362b 56%, #d6c5ad);
-      position:relative;
-      overflow:hidden;
-      display:flex; flex-direction:column; justify-content:flex-end;
-      min-height:560px;
-      color:#fff;
-    }
-    .hero-art::before{
-      content:""; position:absolute; inset:18px;
-      border:1px solid rgba(255,255,255,.12); border-radius:24px;
-      background:
-        radial-gradient(circle at 35% 28%, rgba(255,255,255,.16), transparent 16%),
-        radial-gradient(circle at 65% 46%, rgba(183,136,82,.22), transparent 18%),
-        radial-gradient(circle at 75% 62%, rgba(45,90,68,.24), transparent 20%),
-        radial-gradient(circle at 42% 70%, rgba(255,255,255,.08), transparent 20%),
-        linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
-    }
-    .hero-art::after{
-      content:"";
-      position:absolute;
-      inset:auto 10% 12% 10%;
-      height:34%;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0)),
-        linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,0));
-      border-radius:50% 50% 24% 24% / 58% 58% 18% 18%;
-      transform:perspective(800px) rotateX(60deg);
-      opacity:.55;
-    }
-    .hero-art .badge{
-      position:relative; z-index:1;
-      align-self:flex-start;
-      background:rgba(255,255,255,.16);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:999px; padding:10px 14px; font-size:.76rem; font-weight:800;
-      text-transform:uppercase; letter-spacing:.14em;
-      backdrop-filter:blur(8px);
-    }
-    .hero-art .note{
-      position:relative; z-index:1;
-      margin-top:auto; padding-top:18px; color:#fff; max-width:30ch;
-      font-family:var(--sans-2);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:.8rem;
-    }
-    .hero-art .note strong{
-      display:block; font-family:var(--serif); font-size:2.9rem; line-height:.92; margin-top:10px;
-      text-transform:none; letter-spacing:-.03em;
-    }
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible{opacity:1; transform:none;}
+  .reveal-left{
+    opacity:0; transform:translateX(-28px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-left.visible{opacity:1; transform:none;}
+  .reveal-right{
+    opacity:0; transform:translateX(28px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-right.visible{opacity:1; transform:none;}
+  @media(prefers-reduced-motion:reduce){
+    .reveal,.reveal-left,.reveal-right{opacity:1;transform:none;transition:none;}
+  }
 
-    .catalogue{padding-top:18px}
-    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:24px}
-    .catalogue-grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:18px}
-    .product-card{
-      grid-column:span 4;
-      padding:20px;
-      border-radius:24px;
-      border:1px solid rgba(23,20,18,.08);
-      background:rgba(255,255,255,.82);
-      box-shadow:var(--shadow-soft);
-      transition:.24s ease;
-      display:flex; flex-direction:column; gap:14px;
-      min-height:100%;
-    }
-    .product-card:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
-    .product-media{
-      aspect-ratio:4/3;
-      border-radius:20px;
-      overflow:hidden;
-      background:
-        linear-gradient(135deg, rgba(45,90,68,.16), rgba(107,74,51,.10)),
-        linear-gradient(45deg, #eadfcf, #fbf8f2);
-      border:1px solid rgba(23,20,18,.06);
-      position:relative;
-    }
-    .product-media .emoji{
-      position:absolute; inset:0; display:grid; place-items:center;
-      font-size:clamp(3rem, 5vw, 5rem);
-      filter:saturate(.9);
-    }
-    .tag{
-      position:absolute; top:14px; left:14px;
-      background:rgba(255,255,255,.88);
-      padding:8px 11px; border-radius:999px; font-size:.7rem; font-weight:800; color:var(--forest);
-      border:1px solid rgba(23,20,18,.08);
-      text-transform:uppercase; letter-spacing:.12em;
-    }
-    .product-meta{display:flex; align-items:flex-start; justify-content:space-between; gap:16px}
-    .product-title{font-size:1.75rem}
-    .product-price{font-weight:900; color:var(--coffee); font-size:1.05rem; white-space:nowrap; font-family:var(--sans-2)}
-    .product-desc{color:var(--muted); font-size:.96rem}
-    .product-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
-    .mini{padding:11px 14px; font-size:.8rem}
-    .catalogue-grid .wide{grid-column:span 6}
-    .catalogue-grid .tall{grid-column:span 6}
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
+    transition:background 0.35s, padding 0.35s, backdrop-filter 0.35s;
+  }
+  nav.scrolled{
+    padding:14px 40px;
+    background:rgba(14,23,18,0.96);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mark{
+    font-family:'Fraunces',serif; font-size:1.15rem;
+    font-weight:600; letter-spacing:-0.01em;
+  }
+  .nav-mark span{color:var(--gold);}
+  .nav-links{display:flex; gap:34px;}
+  .nav-links a{
+    font-size:0.82rem; color:var(--mist);
+    letter-spacing:0.03em; transition:color 0.25s;
+    position:relative; padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; bottom:0; left:0; right:100%;
+    height:1px; background:var(--gold); transition:right 0.25s;
+  }
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover::after{right:0;}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .nav-gh{
+    display:flex; align-items:center; gap:7px;
+    font-size:0.78rem; color:var(--sage); letter-spacing:0.04em;
+    border:1px solid var(--line); padding:7px 14px;
+    transition:all 0.25s;
+  }
+  .nav-gh:hover{border-color:var(--line-gold); color:var(--mist);}
+  .nav-gh svg{width:15px; height:15px; fill:currentColor; flex-shrink:0;}
+  .nav-cta{
+    border:1px solid var(--gold); color:var(--gold); padding:9px 18px;
+    font-size:0.78rem; letter-spacing:0.04em;
+    transition:all 0.25s;
+  }
+  .nav-cta:hover{background:var(--gold); color:var(--forest-deep);}
+  .nav-burger{display:none; cursor:pointer; flex-direction:column; gap:5px; padding:4px;}
+  .nav-burger span{display:block; width:22px; height:1.5px; background:var(--mist); transition:all 0.25s;}
 
-    .strip{display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-top:18px}
-    .strip .item{padding:18px; border-radius:22px; background:rgba(255,255,255,.72); border:1px solid rgba(23,20,18,.08)}
-    .strip .item strong{display:block; color:var(--forest); font-size:1.15rem; font-family:var(--serif)}
-    .strip .item span{display:block; color:var(--muted); font-size:.88rem}
-
-    .experience-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
-    .experience-card{padding:24px; border-radius:24px; border:1px solid rgba(23,20,18,.08); background:rgba(255,255,255,.76); box-shadow:var(--shadow-soft)}
-    .experience-card .icon{font-size:2rem; margin-bottom:10px}
-    .experience-card p{color:var(--muted); margin-top:10px}
-
-    .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start}
-    .panel{padding:30px; border-radius:28px; border:1px solid rgba(23,20,18,.08); background:rgba(255,255,255,.78); box-shadow:var(--shadow-soft)}
-    .panel p{color:var(--muted); margin-top:12px}
-    .bullets{display:grid; gap:12px; margin-top:18px}
-    .bullet{padding:14px 16px; border-radius:18px; background:rgba(45,90,68,.05); border:1px solid rgba(45,90,68,.10)}
-    .bullet strong{color:var(--forest)}
-
-    .contact-card{
-      padding:36px;
-      background:linear-gradient(135deg, #183728, #5b3f2c);
-      color:#fff;
-      border-radius:34px;
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
+  /* mobile nav */
+  @media(max-width:760px){
+    .nav-links,.nav-right .nav-gh{display:none;}
+    .nav-burger{display:flex;}
+    nav{padding:18px 24px;}
+    nav.scrolled{padding:14px 24px;}
+    .mobile-menu{
+      display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+      background:var(--forest-deep); z-index:99;
+      flex-direction:column; align-items:center; justify-content:center; gap:28px;
     }
-    .contact-card::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(circle at 18% 20%, rgba(255,255,255,.08), transparent 18%),
-        radial-gradient(circle at 82% 10%, rgba(255,255,255,.06), transparent 16%),
-        radial-gradient(circle at 64% 76%, rgba(183,136,82,.16), transparent 20%);
-      pointer-events:none;
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{font-size:1.5rem; font-family:'Fraunces',serif; color:var(--parchment);}
+    .mobile-menu .close{
+      position:absolute; top:22px; right:24px;
+      font-size:1.2rem; color:var(--sage); cursor:pointer; font-family:'Work Sans',sans-serif;
     }
-    .contact-card > *{position:relative; z-index:1}
-    .contact-card .lead{color:rgba(255,255,255,.82)}
-    .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:18px; margin-top:24px}
-    .contact-box{padding:18px; border-radius:20px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.12)}
-    .contact-box a{display:block; margin-top:8px; color:#fff; font-weight:800}
-    .footer{padding:34px 0 44px; color:var(--muted); text-align:center}
+  }
 
-    .floating-whatsapp{
-      position:fixed; right:18px; bottom:18px; z-index:1200;
-      display:inline-flex; align-items:center; gap:10px;
-      background:#1faa59; color:#fff; padding:14px 18px; border-radius:999px;
-      box-shadow:0 16px 36px rgba(31,31,31,.22); font-weight:800;
-    }
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero-bg{position:absolute; inset:0; z-index:0;}
+  .hero-bg img{
+    filter:saturate(0.8) brightness(0.48);
+    transform:scale(1.06);
+    transition:transform 12s ease;
+  }
+  .hero-bg img.loaded{transform:scale(1);}
+  .hero-bg::after{
+    content:''; position:absolute; inset:0;
+    background:
+      linear-gradient(to top, var(--forest) 6%, rgba(22,35,26,0.2) 50%, rgba(14,23,18,0.5)),
+      linear-gradient(to right, rgba(14,23,18,0.35) 0%, transparent 55%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    padding:0 40px 96px;
+    width:100%;
+    max-width:1180px; margin:0 auto;
+  }
+  .hero-eyebrow{
+    display:flex; align-items:center; gap:12px; margin-bottom:22px; color:var(--gold);
+  }
+  .hero-eyebrow .rule{width:40px; height:1px; background:var(--gold);}
+  .hero h1{
+    font-size:clamp(2.8rem, 7.5vw, 6rem);
+    max-width:860px; color:var(--parchment);
+    animation: fade-up 1s 0.2s both;
+  }
+  .hero h1 em{font-style:italic; color:var(--gold); font-weight:500;}
+  .hero-sub{
+    max-width:480px; margin-top:22px; font-size:1.02rem;
+    color:var(--mist); font-weight:300;
+    animation:fade-up 1s 0.45s both;
+  }
+  .hero-meta{
+    display:flex; gap:48px; margin-top:56px; flex-wrap:wrap;
+    animation:fade-up 1s 0.65s both;
+  }
+  .hero-meta div{border-left:1px solid var(--line-gold); padding-left:16px;}
+  .hero-meta .num{
+    font-family:'Fraunces',serif; font-size:1.5rem;
+    color:var(--parchment); font-weight:500;
+  }
+  .hero-meta .lbl{
+    font-size:0.7rem; color:var(--sage);
+    text-transform:uppercase; letter-spacing:0.06em; margin-top:3px;
+  }
+  .hero-scroll{
+    position:absolute; bottom:36px; right:40px; z-index:3;
+    display:flex; align-items:center; gap:10px;
+    font-size:0.68rem; color:var(--sage); letter-spacing:0.1em; text-transform:uppercase;
+    animation:fade-in 1s 1.2s both;
+  }
+  .hero-scroll .tick{
+    width:1px; height:32px; background:var(--sage); transform-origin:top;
+    animation:tick-drop 2s 1.4s ease-in-out infinite;
+  }
+  @keyframes fade-up{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+  @keyframes fade-in{from{opacity:0;}to{opacity:1;}}
+  @keyframes tick-drop{0%,100%{transform:scaleY(1);opacity:0.5;}50%{transform:scaleY(1.4);opacity:1;}}
 
-    @media (max-width:1080px){
-      .hero-grid,.two-col,.contact-grid,.experience-grid{grid-template-columns:1fr}
-      .product-card,.catalogue-grid .wide,.catalogue-grid .tall{grid-column:span 6}
-      nav ul{display:none}
-      .hero-copy,.hero-art{min-height:unset}
-    }
-    @media (max-width:768px){
-      .section{padding:66px 0}
-      .topbar-inner{flex-direction:column; align-items:flex-start}
-      .hero-copy{padding:28px}
-      .hero-metrics,.strip{grid-template-columns:1fr}
-      .product-card,.catalogue-grid .wide,.catalogue-grid .tall{grid-column:span 12}
-      .section-head{flex-direction:column; align-items:flex-start}
-      .contact-card{padding:26px}
-    }
-  </style>
+  /* ---------- GITHUB BADGE STRIP ---------- */
+  .gh-strip{
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    background:var(--forest-deep);
+  }
+  .gh-strip .wrap{
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .gh-strip-label{
+    font-size:0.72rem; color:var(--sage); letter-spacing:0.08em;
+    text-transform:uppercase; white-space:nowrap; margin-right:6px;
+  }
+  .gh-badges{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+  .gh-badge{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:'JetBrains Mono', monospace; font-size:0.7rem;
+    border:1px solid var(--line); padding:5px 12px;
+    color:var(--sage); transition:all 0.2s; white-space:nowrap;
+  }
+  .gh-badge:hover{border-color:var(--line-gold); color:var(--gold);}
+  .gh-badge svg{width:12px; height:12px; fill:currentColor;}
+  .gh-dot{
+    width:7px; height:7px; border-radius:50%; background:var(--gold);
+    display:inline-block; animation:pulse-dot 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse-dot{0%,100%{opacity:0.5; transform:scale(1);}50%{opacity:1; transform:scale(1.3);}}
+  .gh-divider{width:1px; height:20px; background:var(--line); flex-shrink:0;}
+
+  /* ---------- INTRO ---------- */
+  .intro{
+    padding:120px 0 90px;
+    border-bottom:1px solid var(--line);
+  }
+  .intro .wrap{
+    display:grid; grid-template-columns:1fr 1.4fr; gap:70px; align-items:start;
+  }
+  .intro-label{color:var(--gold);}
+  .intro h2{font-size:clamp(1.8rem,3vw,2.5rem); margin-top:14px;}
+  .intro p{color:var(--mist); font-size:1rem; max-width:520px;}
+  .intro p+p{margin-top:16px;}
+  @media(max-width:700px){
+    .intro .wrap{grid-template-columns:1fr; gap:40px;}
+  }
+
+  /* ---------- PRODUCTS ---------- */
+  .section-head{padding:100px 0 10px;}
+  .section-head .wrap{
+    display:flex; justify-content:space-between;
+    align-items:flex-end; flex-wrap:wrap; gap:20px;
+  }
+  .section-head h2{font-size:clamp(2rem,4vw,3.1rem);}
+  .section-head p{color:var(--sage); max-width:340px; font-size:0.95rem;}
+
+  .products{padding:50px 0 40px;}
+  .product-list{display:flex; flex-direction:column;}
+  .product{
+    display:grid; grid-template-columns:80px 1fr 1.15fr;
+    gap:44px; align-items:center;
+    padding:52px 0; border-top:1px solid var(--line);
+    transition:background 0.25s;
+  }
+  .product:last-child{border-bottom:1px solid var(--line);}
+  .product:hover{background:rgba(201,154,74,0.025);}
+  .product-idx{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem; color:var(--gold-dim);
+  }
+  .product-img{
+    width:100%; aspect-ratio:4/3; overflow:hidden;
+    filter:sepia(0.12) saturate(0.9);
+    position:relative;
+  }
+  .product-img img{
+    transition:transform 0.55s ease, filter 0.55s;
+  }
+  .product:hover .product-img img{
+    transform:scale(1.04);
+    filter:sepia(0) saturate(1);
+  }
+  .product-body h3{font-size:1.75rem; margin-bottom:10px;}
+  .product-body .tag{
+    display:inline-block; color:var(--forest-deep); background:var(--gold);
+    font-size:0.66rem; padding:4px 10px; border-radius:2px; margin-bottom:14px;
+    letter-spacing:0.06em; text-transform:uppercase; font-weight:600;
+  }
+  .product-body p{color:var(--mist); font-size:0.96rem; max-width:460px; line-height:1.65;}
+  .product-facts{display:flex; gap:28px; margin-top:18px; flex-wrap:wrap;}
+  .product-facts div{font-size:0.82rem; color:var(--parchment);}
+  .product-facts .f-lbl{
+    color:var(--sage); font-size:0.66rem;
+    text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;
+  }
+  .price-row{display:flex; gap:24px; margin-top:20px; flex-wrap:wrap;}
+  .price-box{
+    border:1px solid var(--line-gold); padding:14px 18px; min-width:150px;
+    transition:border-color 0.25s;
+  }
+  .price-box:hover{border-color:var(--gold);}
+  .price-box .amt{
+    font-family:'Fraunces',serif; font-size:1.25rem; color:var(--gold);
+  }
+  .price-box .lbl{
+    font-size:0.7rem; color:var(--sage);
+    text-transform:uppercase; letter-spacing:0.04em; margin-top:3px;
+  }
+
+  @media(max-width:820px){
+    .product{grid-template-columns:1fr; gap:22px;}
+    .product-idx{display:none;}
+  }
+
+  /* ---------- ORIGIN BAND ---------- */
+  .origin{
+    padding:130px 0; position:relative;
+    background:var(--forest-deep);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .origin .wrap{
+    display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;
+  }
+  .origin-img{
+    aspect-ratio:5/4; overflow:hidden;
+    filter:saturate(0.9) brightness(0.88);
+    position:relative;
+  }
+  .origin-img::before{
+    content:''; position:absolute; inset:0; z-index:1;
+    border:1px solid var(--line-gold);
+    margin:14px; pointer-events:none;
+  }
+  .origin-text .mono{color:var(--gold);}
+  .origin-text h2{font-size:clamp(1.9rem,3.4vw,2.7rem); margin:16px 0 20px;}
+  .origin-text p{color:var(--mist); max-width:480px; line-height:1.7;}
+  .origin-text p+p{margin-top:14px;}
+  .steam-line{
+    display:flex; gap:6px; margin-top:28px; height:22px; align-items:flex-end;
+  }
+  .steam-bar{
+    width:3px; background:var(--gold); opacity:0.4;
+    animation:rise 2.8s ease-in-out infinite;
+  }
+  .steam-bar:nth-child(1){height:8px; animation-delay:0s;}
+  .steam-bar:nth-child(2){height:16px; animation-delay:0.2s;}
+  .steam-bar:nth-child(3){height:10px; animation-delay:0.4s;}
+  .steam-bar:nth-child(4){height:20px; animation-delay:0.6s;}
+  .steam-bar:nth-child(5){height:12px; animation-delay:0.8s;}
+  .steam-bar:nth-child(6){height:18px; animation-delay:1.0s;}
+  @keyframes rise{
+    0%,100%{transform:scaleY(1); opacity:0.3;}
+    50%{transform:scaleY(1.7); opacity:0.85;}
+  }
+  @media(prefers-reduced-motion:reduce){.steam-bar{animation:none;}}
+  @media(max-width:760px){
+    .origin .wrap{grid-template-columns:1fr; gap:40px;}
+  }
+
+  /* ---------- EXTRAS GRID ---------- */
+  .extras{padding:100px 0;}
+  .extras .wrap{position:relative;}
+  .extras-grid{
+    display:grid; grid-template-columns:repeat(2,1fr);
+    gap:1px; background:var(--line);
+    border:1px solid var(--line); margin-top:52px;
+  }
+  .extra-card{
+    background:var(--forest); padding:40px;
+    transition:background 0.25s;
+  }
+  .extra-card:hover{background:var(--forest-mid);}
+  .extra-card h4{
+    font-size:1.1rem; margin-bottom:10px; color:var(--gold);
+  }
+  .extra-card p{color:var(--mist); font-size:0.9rem; line-height:1.65;}
+  @media(max-width:700px){.extras-grid{grid-template-columns:1fr;}}
+
+  /* ---------- GH REPO SECTION ---------- */
+  .gh-section{
+    padding:100px 0;
+    border-top:1px solid var(--line);
+    background:var(--forest-deep);
+  }
+  .gh-section .wrap{
+    display:grid; grid-template-columns:1fr 1.2fr; gap:70px; align-items:start;
+  }
+  .gh-section h2{font-size:clamp(1.8rem,3vw,2.4rem); margin:14px 0 18px;}
+  .gh-section p{color:var(--mist); font-size:0.96rem; line-height:1.7;}
+  .gh-section p+p{margin-top:14px;}
+
+  .repo-card{
+    border:1px solid var(--line-gold); padding:28px 32px;
+    position:relative; overflow:hidden;
+  }
+  .repo-card::before{
+    content:''; position:absolute; top:0; left:0; right:0;
+    height:2px; background:linear-gradient(to right, var(--gold), transparent);
+  }
+  .repo-card-header{
+    display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:16px;
+  }
+  .repo-icon{
+    width:38px; height:38px; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line-gold);
+  }
+  .repo-icon svg{width:18px; height:18px; fill:var(--gold);}
+  .repo-status{
+    display:flex; align-items:center; gap:6px;
+    font-size:0.7rem; color:var(--sage); letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .repo-name{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem; color:var(--parchment); margin-bottom:6px;
+  }
+  .repo-desc{color:var(--mist); font-size:0.88rem; margin-bottom:20px; line-height:1.6;}
+  .repo-langs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;}
+  .repo-lang{
+    font-size:0.68rem; font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.06em; padding:3px 9px;
+    border:1px solid var(--line); color:var(--sage);
+  }
+  .repo-stats{
+    display:flex; gap:20px; padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  .repo-stats div{
+    display:flex; align-items:center; gap:5px;
+    font-size:0.75rem; color:var(--sage);
+  }
+  .repo-stats svg{width:13px; height:13px; fill:currentColor;}
+  .repo-links{display:flex; gap:12px; margin-top:24px;}
+  .repo-link-btn{
+    display:flex; align-items:center; gap:7px;
+    font-size:0.78rem; letter-spacing:0.04em; padding:10px 16px;
+    transition:all 0.25s;
+  }
+  .repo-link-btn.primary{
+    background:var(--gold); color:var(--forest-deep); font-weight:600;
+  }
+  .repo-link-btn.primary:hover{background:var(--clay); color:var(--parchment);}
+  .repo-link-btn.secondary{
+    border:1px solid var(--line); color:var(--mist);
+  }
+  .repo-link-btn.secondary:hover{border-color:var(--line-gold); color:var(--gold);}
+  .repo-link-btn svg{width:14px; height:14px; fill:currentColor;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    padding:130px 0 110px; text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .cta h2{font-size:clamp(2.2rem,5vw,3.6rem); max-width:700px; margin:0 auto 20px;}
+  .cta p{color:var(--mist); max-width:480px; margin:0 auto 40px;}
+  .cta-form{
+    display:flex; justify-content:center; gap:0;
+    max-width:440px; margin:0 auto;
+    border:1px solid var(--line);
+    transition:border-color 0.25s;
+  }
+  .cta-form:focus-within{border-color:var(--gold);}
+  .cta-form input{
+    flex:1; background:transparent; border:none; padding:16px 18px;
+    color:var(--parchment); font-family:'Work Sans'; font-size:0.92rem; outline:none;
+  }
+  .cta-form input::placeholder{color:var(--sage);}
+  .cta-form button{
+    background:var(--gold); border:none; color:var(--forest-deep);
+    padding:16px 26px; font-size:0.78rem; letter-spacing:0.05em;
+    text-transform:uppercase; cursor:pointer; font-weight:600;
+    transition:background 0.25s, color 0.25s;
+  }
+  .cta-form button:hover{background:var(--clay); color:var(--parchment);}
+  .cta-form button.sent{background:var(--sage); cursor:default;}
+  .form-note{margin-top:16px; font-size:0.76rem; color:var(--sage);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:50px 40px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:20px;
+  }
+  .footer-left{display:flex; flex-direction:column; gap:8px;}
+  .footer-mark{font-family:'Fraunces',serif; font-size:1rem; font-weight:600;}
+  .footer-mark span{color:var(--gold);}
+  .footer-left .mono{color:var(--sage);}
+  .footer-gh{
+    display:flex; align-items:center; gap:8px;
+    font-size:0.78rem; color:var(--sage); letter-spacing:0.04em;
+    border:1px solid var(--line); padding:9px 16px;
+    transition:all 0.25s;
+  }
+  .footer-gh:hover{border-color:var(--line-gold); color:var(--gold);}
+  .footer-gh svg{width:15px; height:15px; fill:currentColor;}
+
+  ::selection{background:var(--gold); color:var(--forest-deep);}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+
+  @media(max-width:760px){
+    .wrap{padding:0 20px;}
+    .hero-content{padding:0 20px 72px;}
+    .hero-meta{gap:28px;}
+    footer{padding:40px 20px; flex-direction:column; align-items:flex-start;}
+    .gh-section .wrap{grid-template-columns:1fr; gap:40px;}
+    nav{padding:18px 24px;}
+  }
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#top" aria-label="GIBBS home">
-        <strong>GIBBS</strong>
-        <span>Luxury coffee catalogue</span>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
+  <span class="close" id="menuClose" aria-label="Close menu">✕ close</span>
+  <a href="#products" onclick="closeMobileMenu()">Products</a>
+  <a href="#origin" onclick="closeMobileMenu()">Origin</a>
+  <a href="#experiences" onclick="closeMobileMenu()">Experiences</a>
+  <a href="#repository" onclick="closeMobileMenu()">GitHub</a>
+  <a href="#order" onclick="closeMobileMenu()">Order coffee →</a>
+</div>
+
+<nav id="mainNav">
+  <a href="#" class="nav-mark">Rustic <span>Garden</span></a>
+  <div class="nav-links">
+    <a href="#products">Products</a>
+    <a href="#origin">Origin</a>
+    <a href="#experiences">Experiences</a>
+    <a href="#repository">GitHub</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://github.com/groupdougie/rustic-garden" class="nav-gh" target="_blank" rel="noopener" aria-label="GitHub repository">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Source
+    </a>
+    <a class="nav-cta" href="#order">Order coffee</a>
+    <button class="nav-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=1800&auto=format&fit=crop" alt="Misty forest at dawn on the Mount Kenya slopes" id="heroBgImg">
+  </div>
+  <div class="hero-content wrap">
+    <div class="hero-eyebrow">
+      <div class="rule"></div>
+      <span class="mono">Kavutiri · Embu County · Kenya</span>
+    </div>
+    <h1>Bring the mountain<br>home for <em>winter</em>.</h1>
+    <p class="hero-sub">4,400 feet below Mount Kenya, a garden grows coffee, trees, and quiet — the three things a Frankfurt winter tends to take away. This is where it comes from.</p>
+    <div class="hero-meta">
+      <div>
+        <div class="num">4,400 ft</div>
+        <div class="lbl">Coffee elevation</div>
+      </div>
+      <div>
+        <div class="num">100%</div>
+        <div class="lbl">Arabica, organic</div>
+      </div>
+      <div>
+        <div class="num">90%</div>
+        <div class="lbl">Hand-processed</div>
+      </div>
+      <div>
+        <div class="num">Kirinyaga</div>
+        <div class="lbl">County, Kenya</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="tick"></div>
+    <span class="mono">Scroll</span>
+  </div>
+</section>
+
+<!-- ========== GITHUB BADGE STRIP ========== -->
+<div class="gh-strip reveal">
+  <div class="wrap">
+    <span class="gh-strip-label">On GitHub</span>
+    <div class="gh-badges">
+      <a href="https://github.com/groupdougie/rustic-garden" class="gh-badge" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        groupdougie/rustic-garden
       </a>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="#catalogue">Catalogue</a></li>
-          <li><a href="#bundles">Bundles</a></li>
-          <li><a href="#experiences">Experiences</a></li>
-          <li><a href="#story">Story</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="gh-divider" aria-hidden="true"></div>
+      <span class="gh-badge">
+        <span class="gh-dot" aria-hidden="true"></span>
+        Live · gh-pages
+      </span>
+      <a href="https://github.com/groupdougie/rustic-garden/blob/main/LICENSE" class="gh-badge" target="_blank" rel="noopener">MIT licence</a>
+      <a href="https://github.com/groupdougie/rustic-garden/issues" class="gh-badge" target="_blank" rel="noopener">Open issues</a>
     </div>
-  </header>
+  </div>
+</div>
 
-  <main id="top">
-    <section class="hero section">
-      <div class="container hero-grid">
-        <div class="hero-copy card">
-          <div class="top">
-            <div class="eyebrow">Kavutiri, Kenya</div>
-            <h1>Boutique coffee, directly from Kavutiri.</h1>
-            <p class="lede">A curated catalogue of coffee, equipment, produce, and experiences — designed to feel premium, convert quickly, and still carry the GIBBS story beneath the surface.</p>
-            <div class="btns">
-              <a class="btn btn-primary" href="#catalogue">Shop Catalogue</a>
-              <a class="btn btn-secondary" href="#contact">Order / Enquire</a>
-            </div>
-          </div>
-          <div class="hero-metrics">
-            <div class="metric"><strong>24/7</strong><span>Catalogue access</span></div>
-            <div class="metric"><strong>Direct</strong><span>Farm-to-customer</span></div>
-            <div class="metric"><strong>Premium</strong><span>Packaging & story</span></div>
-          </div>
-        </div>
-        <div class="hero-art card" aria-label="Premium product showcase">
-          <div class="badge">Best seller this season</div>
-          <div class="note">Single Origin Coffee<strong>KES 2,500</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section catalogue" id="catalogue">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Product catalogue</div>
-            <h2>Lead with the products that sell.</h2>
-          </div>
-          <p class="lead">Clean product cards, visible pricing, and immediate actions. That is the fastest path to sales.</p>
-        </div>
-
-        <div class="catalogue-grid">
-          <article class="product-card wide">
-            <div class="product-media"><span class="tag">Best seller</span><div class="emoji">☕</div></div>
-            <div class="product-meta"><h3 class="product-title">Single Origin Coffee</h3><div class="product-price">KES 2,500</div></div>
-            <p class="product-desc">Freshly roasted, Kavutiri-grown, premium profile for export and local customers.</p>
-            <div class="product-actions">
-              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Single%20Origin%20Coffee">Order now</a>
-              <a class="btn btn-secondary mini" href="#contact">Ask a question</a>
-            </div>
-          </article>
-
-          <article class="product-card wide">
-            <div class="product-media"><span class="tag">Popular</span><div class="emoji">☕</div></div>
-            <div class="product-meta"><h3 class="product-title">Medium Roast</h3><div class="product-price">KES 2,200</div></div>
-            <p class="product-desc">Balanced, smooth, and versatile — ideal for everyday drinking and retail shelves.</p>
-            <div class="product-actions">
-              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Medium%20Roast">Order now</a>
-              <a class="btn btn-secondary mini" href="#contact">Bulk order</a>
-            </div>
-          </article>
-
-          <article class="product-card tall">
-            <div class="product-media"><span class="tag">Tea</span><div class="emoji">🍂</div></div>
-            <div class="product-meta"><h3 class="product-title">Cascara</h3><div class="product-price">KES 800</div></div>
-            <p class="product-desc">A floral, fruity coffee cherry tea with a clean, elegant finish.</p>
-            <div class="product-actions">
-              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Cascara">Buy cascara</a>
-            </div>
-          </article>
-
-          <article class="product-card tall">
-            <div class="product-media"><span class="tag">Gift set</span><div class="emoji">🎁</div></div>
-            <div class="product-meta"><h3 class="product-title">Coffee Gift Box</h3><div class="product-price">KES 6,500</div></div>
-            <p class="product-desc">Coffee plus moka pot, ideal for gifting, hospitality, and premium buyers.</p>
-            <div class="product-actions">
-              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Gift%20Box">Order gift box</a>
-            </div>
-          </article>
-
-          <article class="product-card tall">
-            <div class="product-media"><span class="tag">Equipment</span><div class="emoji">🫖</div></div>
-            <div class="product-meta"><h3 class="product-title">Moka Pot 3 Cup</h3><div class="product-price">KES 4,000</div></div>
-            <p class="product-desc">Classic entry point for home brewers, café customers, and gift bundles.</p>
-            <div class="product-actions">
-              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Order%20Moka%20Pot%203%20Cup">Buy equipment</a>
-            </div>
-          </article>
-
-          <article class="product-card tall">
-            <div class="product-media"><span class="tag">Fresh produce</span><div class="emoji">🥑</div></div>
-            <div class="product-meta"><h3 class="product-title">Farm Produce Box</h3><div class="product-price">From KES 1,500</div></div>
-            <p class="product-desc">Seasonal avocado, bananas, tree tomato, sweet potato, and more.</p>
-            <div class="product-actions">
-              <a class="btn btn-primary mini" href="mailto:groupnomad@outlook.com?subject=Farm%20Produce%20Box">Request basket</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="bundles">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Revenue bundles</div>
-            <h2>Make the basket bigger.</h2>
-          </div>
-          <p class="lead">Bundles lift order value and make the brand easier to buy for first-time visitors.</p>
-        </div>
-        <div class="strip">
-          <div class="item"><strong>Starter Brew Kit</strong><span>Coffee + 3 cup moka pot + guide</span></div>
-          <div class="item"><strong>Household Pack</strong><span>2 coffees + cascara + mug</span></div>
-          <div class="item"><strong>Gift Pack</strong><span>Coffee + equipment + note card</span></div>
-          <div class="item"><strong>Wholesale Box</strong><span>For cafés, hotels, and shops</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="experiences">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Experiences</div>
-            <h2>Sell the visit, not only the product.</h2>
-          </div>
-          <p class="lead">Farm experiences turn curiosity into bookings and strengthen trust in the products.</p>
-        </div>
-        <div class="experience-grid">
-          <div class="experience-card"><div class="icon">🌿</div><h3>Farm Tour</h3><p>Walk through coffee, macadamia, and fruit systems with a guided story of the land.</p></div>
-          <div class="experience-card"><div class="icon">☕</div><h3>Coffee Tasting</h3><p>Book tastings for guests, buyers, students, and hospitality partners.</p></div>
-          <div class="experience-card"><div class="icon">📸</div><h3>Harvest Experience</h3><p>Seasonal participation for visitors who want an immersive rural experience.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="story">
-      <div class="container two-col">
-        <div class="panel">
-          <div class="eyebrow">Brand story</div>
-          <h2>Now tell the story.</h2>
-          <p>Once the catalogue has done its job, the site can slow down and explain the land, the lineage, the methods, and the philosophy behind GIBBS.</p>
-          <div class="bullets">
-            <div class="bullet"><strong>Origin:</strong> Kavutiri, Embu County, Kenya.</div>
-            <div class="bullet"><strong>Positioning:</strong> premium farm brand with digital commerce.</div>
-            <div class="bullet"><strong>Promise:</strong> honest products, visible pricing, direct contact.</div>
-          </div>
-        </div>
-        <div class="panel">
-          <div class="eyebrow">What to highlight</div>
-          <h2>Trust signals that help sales.</h2>
-          <p>Use this area for certifications, processing methods, freshness notes, harvest dates, testimonials, and shipping details.</p>
-          <div class="bullets">
-            <div class="bullet"><strong>Quality:</strong> roasting date, origin, and batch notes.</div>
-            <div class="bullet"><strong>Fulfilment:</strong> pickup, local delivery, and dispatch options.</div>
-            <div class="bullet"><strong>Partnerships:</strong> cafés, hotels, gift buyers, and exporters.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="research">
-      <div class="container two-col">
-        <div class="panel">
-          <div class="eyebrow">Research</div>
-          <h2>Keep the serious layer, but place it below commerce.</h2>
-          <p>Research should support trust and authority, not delay the sale. Keep it clean and concise.</p>
-        </div>
-        <div class="panel">
-          <div class="bullets" style="margin-top:0">
-            <div class="bullet"><strong>GIS & maps:</strong> land use, water, biodiversity.</div>
-            <div class="bullet"><strong>Datasets:</strong> yields, soil, climate, trials.</div>
-            <div class="bullet"><strong>Publications:</strong> reports, papers, and field notes.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-card">
-          <div class="eyebrow" style="color:#fff">Contact</div>
-          <h2>Make the next step easy.</h2>
-          <p class="lead">Simple contact paths improve conversions: phone, email, WhatsApp, and direct order links.</p>
-          <div class="contact-grid">
-            <div class="contact-box">
-              <strong>Call / WhatsApp</strong>
-              <a href="tel:+254722704997">+254 722 704 997</a>
-              <a href="tel:+254727149757">+254 727 149 757</a>
-            </div>
-            <div class="contact-box">
-              <strong>Email</strong>
-              <a href="mailto:groupnomad@outlook.com">groupnomad@outlook.com</a>
-              <div style="margin-top:10px; color:rgba(255,255,255,.80)">Kavutiri • Embu County • Kenya</div>
-            </div>
-          </div>
-          <div class="btns" style="margin-top:22px">
-            <a class="btn btn-primary" href="mailto:groupnomad@outlook.com?subject=New%20Order%20Inquiry">Place an order</a>
-            <a class="btn btn-secondary" href="#catalogue" style="border-color:rgba(255,255,255,.26); color:#fff">Back to catalogue</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <a class="floating-whatsapp" href="https://wa.me/254722704997" target="_blank" rel="noreferrer">WhatsApp</a>
-
-  <footer class="footer">
-    <div class="container">
-      GIBBS — Growing Knowledge Across Generations • Kavutiri, Kenya
+<!-- ========== INTRO ========== -->
+<section class="intro">
+  <div class="wrap">
+    <div class="reveal-left">
+      <span class="mono intro-label">The premise</span>
+      <h2>A garden built to undo what a season indoors does to you.</h2>
     </div>
-  </footer>
+    <div class="reveal-right">
+      <p>Rustic Garden sits on the fertile slopes near Mount Kenya, where a single-source coffee farm, a chlorine-free swimming pool, and a working aquaculture project share the same few acres with stands of trees planted for no reason other than the fact that people need them nearby.</p>
+      <p>Everything below is drawn from what actually happens on that land — not a wellness brochure, but the four things worth bringing to a place that currently has neither trees nor coffee in easy reach.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRODUCTS ========== -->
+<section id="products">
+  <div class="section-head reveal">
+    <div class="wrap">
+      <div>
+        <span class="mono" style="color:var(--gold)">Flagship product</span>
+        <h2>Charlie's Coffee</h2>
+      </div>
+      <p>Honey-processed, hand-picked Arabica from the Mount Kenya foothills — the one thing on this list you can actually have shipped.</p>
+    </div>
+  </div>
+  <div class="wrap products">
+    <div class="product-list">
+
+      <div class="product reveal">
+        <div class="product-idx">01</div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=900&auto=format&fit=crop" alt="Coffee cherries drying in the sun" loading="lazy">
+        </div>
+        <div class="product-body">
+          <span class="tag">Best for a German winter</span>
+          <h3>Honey-Processed Arabica</h3>
+          <p>Fruit sugars infuse the beans as they sun-dry on raised beds, giving a richer body, natural sweetness, and fruity or tea-like notes you won't get from a washed coffee.</p>
+          <div class="price-row">
+            <div class="price-box">
+              <div class="amt">1,400 KES / kg</div>
+              <div class="lbl">Green beans</div>
+            </div>
+            <div class="price-box">
+              <div class="amt">1,850 KES / kg</div>
+              <div class="lbl">Roasted, your choice</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product reveal">
+        <div class="product-idx">02</div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=900&auto=format&fit=crop" alt="Forest path through trees" loading="lazy">
+        </div>
+        <div class="product-body">
+          <span class="tag">The trees you're missing</span>
+          <h3>Sylvotherapy Sessions</h3>
+          <p>Guided time among trees — no equipment, no itinerary. Slower breathing, lower stress, sharper focus, the parts of a forest a screen can't replace.</p>
+          <div class="product-facts">
+            <div><div class="f-lbl">Format</div>Self-paced or guided</div>
+            <div><div class="f-lbl">Equipment</div>None required</div>
+            <div><div class="f-lbl">Best for</div>Stress, low mood, focus</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product reveal">
+        <div class="product-idx">03</div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=900&auto=format&fit=crop" alt="Natural swimming pool" loading="lazy">
+        </div>
+        <div class="product-body">
+          <span class="tag">Chlorine-free</span>
+          <h3>Natural Wellness Pool</h3>
+          <p>Low-impact swimming in a naturally filtered pool — gentler on skin and joints, and kinder to the ground it sits on than a chlorinated one would be.</p>
+          <div class="product-facts">
+            <div><div class="f-lbl">Filtration</div>Natural, no chlorine</div>
+            <div><div class="f-lbl">Good for</div>Joints, cardio, sleep</div>
+            <div><div class="f-lbl">Social</div>Group swims available</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product reveal">
+        <div class="product-idx">04</div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1544984243-ec57ea16fe25?q=80&w=900&auto=format&fit=crop" alt="Fish pond aquaculture" loading="lazy">
+        </div>
+        <div class="product-body">
+          <span class="tag">Learn the farm</span>
+          <h3>Aquaculture Tour</h3>
+          <p>See how tilapia and catfish are raised in ponds and cages, and how a Recirculating Aquaculture System keeps the water — and the community around it — healthy.</p>
+          <div class="product-facts">
+            <div><div class="f-lbl">Species</div>Tilapia, catfish</div>
+            <div><div class="f-lbl">System</div>Ponds, cages, RAS</div>
+            <div><div class="f-lbl">Focus</div>Food security, jobs</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== ORIGIN ========== -->
+<section id="origin" class="origin">
+  <div class="wrap">
+    <div class="origin-img reveal-left">
+      <img src="https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?q=80&w=1200&auto=format&fit=crop" alt="Mount Kenya slopes at dawn" loading="lazy">
+    </div>
+    <div class="origin-text reveal-right">
+      <span class="mono">Where it's grown</span>
+      <h2>Sourced by hand, roasted with restraint.</h2>
+      <p>Every cherry is hand-picked at its peak by organic farmers on the slopes near Kavutiri, then honey-processed — a method that trades speed for flavor, letting fruit sugars settle into the bean during sun drying.</p>
+      <p>Light roasts keep the citrus and floral notes intact; dark roasts lean into smoke, chocolate, and a smooth, low-acid finish. A French press draws out the widest range of flavor across both — a moka pot suits a stronger, darker cup.</p>
+      <div class="steam-line" aria-hidden="true">
+        <div class="steam-bar"></div><div class="steam-bar"></div>
+        <div class="steam-bar"></div><div class="steam-bar"></div>
+        <div class="steam-bar"></div><div class="steam-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EXPERIENCES ========== -->
+<section id="experiences" class="extras">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="mono" style="color:var(--gold)">Also growing on site</span>
+      <h2 style="font-size:clamp(1.9rem,3.5vw,2.5rem); margin-top:10px;">Beyond the four</h2>
+    </div>
+    <div class="extras-grid">
+      <div class="extra-card reveal">
+        <h4>Drip irrigation, done properly</h4>
+        <p>Water delivered straight to the roots — less evaporation, deeper roots, and fewer nutrients lost to runoff than a hose ever manages.</p>
+      </div>
+      <div class="extra-card reveal">
+        <h4>An arrowroot variety in progress</h4>
+        <p>The garden is currently breeding its own <em>Maranta arundinacea</em> arrowroot, alongside a network of local farmers trained in composting.</p>
+      </div>
+      <div class="extra-card reveal">
+        <h4>Macadamia &amp; mango, in the works</h4>
+        <p>Early-stage value addition on macadamia and mango — worth asking about directly if you're sourcing beyond coffee.</p>
+      </div>
+      <div class="extra-card reveal">
+        <h4>Vegetative propagation</h4>
+        <p>The garden breeds its own seed stock, favoring vegetative propagation for reliability over generations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GITHUB REPO SECTION ========== -->
+<section id="repository" class="gh-section">
+  <div class="wrap">
+    <div class="reveal-left">
+      <span class="mono" style="color:var(--gold)">Open source</span>
+      <h2>This site lives on GitHub.</h2>
+      <p>The codebase for Rustic Garden is public — built as a single-file static site, deployable via GitHub Pages with zero dependencies. Fork it, adapt it, or follow along as the farm and its digital presence grow together.</p>
+      <p>Contributions are welcome: corrections to crop data, translation into Swahili, or improvements to the ordering flow. Open an issue or submit a pull request.</p>
+    </div>
+    <div class="reveal-right">
+      <div class="repo-card">
+        <div class="repo-card-header">
+          <div class="repo-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8z"/></svg>
+          </div>
+          <div class="repo-status">
+            <span class="gh-dot" aria-label="Live deployment"></span>
+            gh-pages · live
+          </div>
+        </div>
+        <div class="repo-name">groupdougie / rustic-garden</div>
+        <div class="repo-desc">Landing page for Kavutiri Farm — Charlie's Coffee, sylvotherapy, natural pool, and aquaculture. Single-file, zero dependencies.</div>
+        <div class="repo-langs">
+          <span class="repo-lang">HTML</span>
+          <span class="repo-lang">CSS</span>
+          <span class="repo-lang">Vanilla JS</span>
+          <span class="repo-lang">GitHub Pages</span>
+        </div>
+        <div class="repo-stats">
+          <div>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+            Star
+          </div>
+          <div>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878z"/></svg>
+            Fork
+          </div>
+          <div>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/></svg>
+            MIT licence
+          </div>
+        </div>
+        <div class="repo-links">
+          <a href="https://github.com/groupdougie/rustic-garden" class="repo-link-btn primary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            View on GitHub
+          </a>
+          <a href="https://github.com/groupdougie/rustic-garden/issues/new" class="repo-link-btn secondary" target="_blank" rel="noopener">Open an issue</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section id="order" class="cta">
+  <div class="wrap reveal">
+    <span class="mono" style="color:var(--gold)">Start with the coffee</span>
+    <h2>A cup from Mount Kenya, brewed in a Frankfurt kitchen.</h2>
+    <p>Leave your email and we'll send ordering details for Charlie's Coffee — green or roasted, your choice of roast.</p>
+    <form class="cta-form" id="ctaForm" onsubmit="handleSubmit(event)">
+      <input type="email" id="emailInput" placeholder="you@example.com" required aria-label="Email address">
+      <button type="submit" id="submitBtn">Notify me</button>
+    </form>
+    <div class="form-note">No spam — one message when ordering opens for your region.</div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-mark">Rustic <span>Garden</span></div>
+    <div class="mono">Kavutiri, Kirinyaga County · Kenya</div>
+    <div class="mono">Sylvotherapy · Aquaculture · Charlie's Coffee</div>
+  </div>
+  <a href="https://github.com/groupdougie/rustic-garden" class="footer-gh" target="_blank" rel="noopener" aria-label="GitHub repository">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    groupdougie/rustic-garden
+  </a>
+</footer>
+
+<script>
+  /* ---------- NAV SCROLL ---------- */
+  const nav = document.getElementById('mainNav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- HERO IMAGE PAN ---------- */
+  const heroImg = document.getElementById('heroBgImg');
+  heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+  if(heroImg.complete) heroImg.classList.add('loaded');
+
+  /* ---------- SCROLL REVEAL ---------- */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if(e.isIntersecting){
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ---------- MOBILE MENU ---------- */
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuClose = document.getElementById('menuClose');
+
+  function openMobileMenu(){
+    mobileMenu.classList.add('open');
+    burger.setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden';
+  }
+  function closeMobileMenu(){
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+  }
+  burger.addEventListener('click', openMobileMenu);
+  menuClose.addEventListener('click', closeMobileMenu);
+
+  /* ---------- CTA FORM ---------- */
+  function handleSubmit(e){
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const input = document.getElementById('emailInput');
+    btn.textContent = 'Sent ✓';
+    btn.classList.add('sent');
+    btn.disabled = true;
+    input.value = '';
+  }
+
+  /* ---------- PARALLAX HERO (subtle) ---------- */
+  const heroBg = document.querySelector('.hero-bg img');
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if(y < window.innerHeight){
+        heroBg.style.transform = `scale(1) translateY(${y * 0.18}px)`;
+      }
+    }, {passive:true});
+  }
+</script>
 </body>
 </html>
