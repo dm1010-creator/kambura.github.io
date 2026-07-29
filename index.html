@@ -972,68 +972,96 @@
     </div>
 
 </footer>
-  /* ---------- NAV SCROLL ---------- */
-  const nav = document.getElementById('mainNav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
 
-  /* ---------- HERO IMAGE PAN ---------- */
-  const heroImg = document.getElementById('heroBgImg');
-  heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
-  if(heroImg.complete) heroImg.classList.add('loaded');
+<script>
+/* ---------- NAV SCROLL ---------- */
+const nav = document.getElementById('mainNav');
 
-  /* ---------- SCROLL REVEAL ---------- */
-  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if(e.isIntersecting){
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
+const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+};
+
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ---------- HERO IMAGE ---------- */
+const heroImg = document.getElementById('heroBgImg');
+
+heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+
+if (heroImg.complete) {
+    heroImg.classList.add('loaded');
+}
+
+/* ---------- SCROLL REVEAL ---------- */
+const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            observer.unobserve(entry.target);
+        }
     });
-  }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
-  revealEls.forEach(el => observer.observe(el));
+}, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -40px 0px"
+});
 
-  /* ---------- MOBILE MENU ---------- */
-  const burger = document.getElementById('burgerBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const menuClose = document.getElementById('menuClose');
+revealEls.forEach(el => observer.observe(el));
 
-  function openMobileMenu(){
-    mobileMenu.classList.add('open');
-    burger.setAttribute('aria-expanded','true');
-    document.body.style.overflow='hidden';
-  }
-  function closeMobileMenu(){
-    mobileMenu.classList.remove('open');
-    burger.setAttribute('aria-expanded','false');
-    document.body.style.overflow='';
-  }
-  burger.addEventListener('click', openMobileMenu);
-  menuClose.addEventListener('click', closeMobileMenu);
+/* ---------- MOBILE MENU ---------- */
+const burger = document.getElementById("burgerBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const menuClose = document.getElementById("menuClose");
 
-  /* ---------- CTA FORM ---------- */
-  function handleSubmit(e){
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    const input = document.getElementById('emailInput');
-    btn.textContent = 'Sent ✓';
-    btn.classList.add('sent');
-    btn.disabled = true;
-    input.value = '';
-  }
+function openMobileMenu() {
+    mobileMenu.classList.add("open");
+    burger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+}
 
-  /* ---------- PARALLAX HERO (subtle) ---------- */
-  const heroBg = document.querySelector('.hero-bg img');
-  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if(y < window.innerHeight){
-        heroBg.style.transform = `scale(1) translateY(${y * 0.18}px)`;
-      }
-    }, {passive:true});
-  }
+function closeMobileMenu() {
+    mobileMenu.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+}
+
+burger.addEventListener("click", openMobileMenu);
+menuClose.addEventListener("click", closeMobileMenu);
+
+/* ---------- EMAIL FORM ---------- */
+function handleSubmit(event) {
+    event.preventDefault();
+
+    const button = document.getElementById("submitBtn");
+    const input = document.getElementById("emailInput");
+
+    button.textContent = "Sent ✓";
+    button.classList.add("sent");
+    button.disabled = true;
+
+    input.value = "";
+}
+
+/* ---------- PARALLAX ---------- */
+const heroBg = document.querySelector(".hero-bg img");
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+
+    window.addEventListener("scroll", () => {
+
+        const y = window.scrollY;
+
+        if (y < window.innerHeight) {
+            heroBg.style.transform =
+                `scale(1) translateY(${y * 0.18}px)`;
+        }
+
+    }, { passive: true });
+
+}
 </script>
+
 </body>
 </html>
