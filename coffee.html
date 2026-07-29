@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Perfect Pour-Over Coffee – What the Science Says</title>
+  <style>
+    :root {
+      --coffee-dark: #3c2415;
+      --coffee-mid: #6f4e37;
+      --coffee-light: #c4a484;
+      --cream: #f8f1e9;
+      --foam: #fffaf5;
+      --accent: #d4a017;
+      --text: #2c1a0e;
+      --muted: #5c4033;
+      --card: #ffffff;
+      --success: #2e7d32;
+      --border: #e8d9c8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 1.05rem;
+    }
+
+    header {
+      background: linear-gradient(145deg, var(--coffee-dark), var(--coffee-mid));
+      color: var(--foam);
+      padding: 3.5rem 1.5rem 3rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    header p {
+      font-size: 1.15rem;
+      opacity: 0.92;
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--coffee-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      color: var(--coffee-dark);
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid var(--coffee-light);
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: var(--coffee-mid);
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      color: var(--muted);
+    }
+
+    /* Cards for the three cups */
+    .cups {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .cup-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+      box-shadow: 0 4px 14px rgba(60, 36, 21, 0.06);
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+
+    .cup-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .cup-card.winner {
+      border: 2px solid var(--accent);
+      box-shadow: 0 6px 20px rgba(212, 160, 23, 0.18);
+    }
+
+    .cup-card .rank {
+      position: absolute;
+      top: -10px;
+      right: 14px;
+      background: var(--coffee-dark);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .cup-card.winner .rank {
+      background: var(--accent);
+      color: var(--coffee-dark);
+    }
+
+    .cup-card h3 {
+      margin-top: 0.3rem;
+      font-size: 1.25rem;
+    }
+
+    .cup-card ul {
+      list-style: none;
+      margin-top: 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    .cup-card li {
+      padding: 0.25rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .cup-card li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--coffee-light);
+    }
+
+    /* Steps */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      margin-top: 1.2rem;
+    }
+
+    .steps li {
+      position: relative;
+      padding-left: 3.2rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.2rem;
+      height: 2.2rem;
+      background: var(--coffee-mid);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* Results table */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--coffee-dark);
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) td {
+      background: #faf6f1;
+    }
+
+    .highlight {
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    /* Key takeaway boxes */
+    .takeaway {
+      background: linear-gradient(135deg, #f5efe6, #fff8f0);
+      border-left: 5px solid var(--accent);
+      padding: 1.3rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+      margin: 1.5rem 0;
+    }
+
+    .takeaway strong {
+      color: var(--coffee-dark);
+    }
+
+    /* Tips */
+    .tips {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .tip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.3rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .tip-num {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--coffee-light);
+      color: var(--coffee-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--coffee-dark);
+      color: var(--coffee-light);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    /* Simple accordion for mobile-friendly details */
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      padding: 0.9rem 1.2rem;
+    }
+
+    summary {
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--coffee-mid);
+    }
+
+    details[open] summary {
+      margin-bottom: 0.6rem;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 2.5rem 1rem 2rem;
+      }
+      main {
+        padding: 1.8rem 1rem 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Science-backed guide</div>
+  <h1>What Makes the Perfect Pour-Over Coffee?</h1>
+  <p>A clear look at how filter-cup design changes extraction, flavour compounds and antioxidant levels — based on real lab results.</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>The short answer</h2>
+    <p class="lead">Among the three ceramic filter cups tested, the new <strong>PF2</strong> design produced the highest levels of caffeine, chlorogenic acid, trigonelline, total phenolics and flavonoids, plus strong antioxidant activity. It also gave more stable water flow. PF1 came second. The ordinary commercial V60 (the control) came last on most measures.</p>
+    <div class="takeaway">
+      <strong>Bottom line:</strong> A filter cup that holds the paper tightly and spreads water evenly extracts more of the good compounds and gives more consistent results — even when different people pour.
+    </div>
+  </section>
+
+  <section>
+    <h2>The three filter cups</h2>
+    <p>Researchers compared one everyday commercial cup with two specially designed ceramic cups.</p>
+
+    <div class="cups">
+      <div class="cup-card winner">
+        <span class="rank">1st – Best</span>
+        <h3>PF2 (new design)</h3>
+        <ul>
+          <li>One-piece ceramic</li>
+          <li>Eight alternating long &amp; short grooves</li>
+          <li>Holds paper tightly against the wall</li>
+          <li>Even air venting &amp; water flow</li>
+        </ul>
+      </div>
+
+      <div class="cup-card">
+        <span class="rank">2nd</span>
+        <h3>PF1 (earlier design)</h3>
+        <ul>
+          <li>Nine equal-length grooves</li>
+          <li>Each groove has an inflow + diversion section</li>
+          <li>Better paper fit than a standard V60</li>
+        </ul>
+      </div>
+
+      <div class="cup-card">
+        <span class="rank">3rd – Control</span>
+        <h3>Hario V60</h3>
+        <ul>
+          <li>Commercial spiral-ridge cone</li>
+          <li>Widely used in cafés and homes</li>
+          <li>The everyday baseline</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How they tested it</h2>
+    <p>Everything was kept the same except the filter cup, so differences could be blamed on the cup design.</p>
+
+    <ol class="steps">
+      <li><strong>Beans &amp; grind</strong><br>Medium-roasted Arabica beans. Ground in 14 g batches on a flat-blade grinder at three settings: fine, medium and coarse.</li>
+      <li><strong>Dose &amp; water</strong><br>12 g, 14 g, 16 g or 18 g of grounds placed in a paper filter inside the cup. Boiling water poured to a total of 270 g on the scale. Contact time ≈ 2 min 30 s.</li>
+      <li><strong>Cool &amp; measure</strong><br>Coffee cooled to room temperature (25 °C). Then particle size, flow stability, dissolved solids, colour, caffeine, chlorogenic acid, trigonelline, total phenolics (TPC), total flavonoids (TFC) and antioxidant activity (DPPH &amp; ABTS) were measured.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Key results – PF2 came out on top</h2>
+    <p>All differences marked “significant” mean p &lt; 0.05 (statistically unlikely to be chance).</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Compound / property</th>
+            <th>PF2</th>
+            <th>PF1</th>
+            <th>V60 (control)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Caffeine</td>
+            <td class="highlight">Highest</td>
+            <td>Middle</td>
+            <td>Lowest</td>
+          </tr>
+          <tr>
+            <td>Chlorogenic acid</td>
+            <td class="highlight">263 ppm</td>
+            <td class="highlight">263 ppm</td>
+            <td>Lower</td>
+          </tr>
+          <tr>
+            <td>Trigonelline</td>
+            <td class="highlight">605 ppm (max)</td>
+            <td>Lower</td>
+            <td>Lower</td>
+          </tr>
+          <tr>
+            <td>Total phenolics (TPC)</td>
+            <td class="highlight">800 µg GAE/mL</td>
+            <td>Lower</td>
+            <td>Lower</td>
+          </tr>
+          <tr>
+            <td>Total flavonoids (TFC)</td>
+            <td class="highlight">840 µg CE/mL</td>
+            <td>700 µg CE/mL</td>
+            <td>Lowest</td>
+          </tr>
+          <tr>
+            <td>DPPH antioxidant activity</td>
+            <td class="highlight">1264.90 ± 27.22 µg ACE/mL</td>
+            <td>Similar to PF2</td>
+            <td>Lower</td>
+          </tr>
+          <tr>
+            <td>ABTS antioxidant activity</td>
+            <td class="highlight">188.47 ± 5.68 µg ACE/mL</td>
+            <td>Lower</td>
+            <td>Lower</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>These numbers sit comfortably inside the ranges reported by other filter-coffee studies (caffeine roughly 360–1580 ppm, chlorogenic acid 150–470 ppm).</p>
+  </section>
+
+  <section>
+    <h2>Why PF2 extracted more of the good stuff</h2>
+    <p>The alternating long and short grooves keep the paper filter pressed evenly against the ceramic wall. That does two useful things:</p>
+    <ul style="margin: 1rem 0 1rem 1.5rem;">
+      <li>Air can escape uniformly instead of getting trapped.</li>
+      <li>Water spreads outward in a stable pattern instead of finding random channels or leaving dry patches of grounds.</li>
+    </ul>
+    <p>Result: less channelling, less fine-particle clogging at the bottom, more even contact between water and coffee, and therefore higher extraction of caffeine, chlorogenic acids, trigonelline and the phenolic compounds that give antioxidant activity.</p>
+    <div class="takeaway">
+      The study also noted that water-flow direction with PF2 was more even and the weight of liquid extracted was more consistent — even when different people did the pouring. That stability is valuable both in a café and at home.
+    </div>
+  </section>
+
+  <section>
+    <h2>What the compounds actually do</h2>
+    <details>
+      <summary>Caffeine</summary>
+      <p>The classic stimulant. Also helps scavenge certain free radicals (•OH).</p>
+    </details>
+    <details>
+      <summary>Chlorogenic acids</summary>
+      <p>Major antioxidants in coffee. Linked to the bright, fruity acidity many people like in a good pour-over.</p>
+    </details>
+    <details>
+      <summary>Trigonelline</summary>
+      <p>Breaks down during roasting into compounds that contribute to aroma and perceived sweetness/bitterness balance.</p>
+    </details>
+    <details>
+      <summary>TPC &amp; TFC (total phenolics &amp; flavonoids)</summary>
+      <p>Broad measures of the plant compounds that give coffee its antioxidant capacity. Higher numbers generally mean more of these beneficial molecules made it into the cup.</p>
+    </details>
+    <details>
+      <summary>DPPH &amp; ABTS tests</summary>
+      <p>Two common lab methods that measure how well a liquid can neutralise free radicals. Higher numbers = stronger antioxidant activity in the finished coffee.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Practical tips for a better cup at home</h2>
+    <p>You don’t need the exact PF2 cup to apply the lessons. Focus on the principles that made it win:</p>
+
+    <div class="tips">
+      <div class="tip">
+        <div class="tip-num">1</div>
+        <div>
+          <strong>Paper fit matters</strong><br>
+          Make sure the filter paper sits snugly against the walls of whatever dripper you use. Large air gaps encourage uneven flow.
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">2</div>
+        <div>
+          <strong>Pour steadily and centred</strong><br>
+          The study used a centred stream to a fixed total weight (270 g water for 12–18 g coffee). Consistency beats fancy patterns.
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">3</div>
+        <div>
+          <strong>Grind size is still king</strong><br>
+          They tested fine, medium and coarse. Medium is usually the safest starting point for pour-over; adjust if the brew is too slow or too fast.
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">4</div>
+        <div>
+          <strong>Ratio around 1:15–1:18</strong><br>
+          14–18 g coffee to 270 g water is roughly that range. Scale up or down as you like, but keep the ratio steady.
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">5</div>
+        <div>
+          <strong>Freshly roasted Arabica helps</strong><br>
+          The study used medium-roasted Arabica. Stale beans lose aroma and some of the delicate acids that make a cup lively.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>One honest caveat</h2>
+    <p>The lab numbers for extraction yield, bioactive compounds and antioxidant activity clearly favour PF2. Taste and overall enjoyment, however, still need proper consumer sensory tests. The researchers themselves note that “the essential aspect for consumers to taste coffee remains its attractive taste and palatability” and that acceptability of the PF2 coffee should be confirmed in future work.</p>
+    <p>So: better chemistry and more stable extraction are strong advantages. Whether that always equals “the cup you love most” is something only your own palate can decide.</p>
+  </section>
+
+  <section>
+    <h2>Quick reference – the takeaway</h2>
+    <div class="takeaway">
+      <strong>PF2 &gt; PF1 &gt; standard V60</strong> for extraction efficiency, consistency of flow, and levels of caffeine, chlorogenic acid, trigonelline, phenolics, flavonoids and measured antioxidant activity.<br><br>
+      The design feature that mattered most was the fluted wall that keeps the paper filter in close, even contact with the cup — reducing channelling and letting water extract more evenly.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Based on published experimental data comparing three ceramic pour-over filter cups.<br>
+  Single-file HTML · ready for GitHub Pages or any static host.</p>
+</footer>
+
+</body>
+</html>
