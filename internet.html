@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Three Layers of Digital Governance — Rustic Garden Research</title>
+<meta name="description" content="How the Internet is stratified into Infrastructure, Logical and Economic-Societal layers — and why no single actor governs it. Adapted from the ICANN/XPLANE public-use infographic (2015).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #241a0c;
+  --forest: #3c4322;
+  --forest-deep: #2a2f18;
+  --parchment: #efe3c8;
+  --parchment-deep: #e6d7b4;
+  --card: #fbf5e6;
+  --copper: #a15c33;
+  --copper-deep: #7f4726;
+  --gold: #c99a3e;
+  --line: #cdb98a;
+  --muted: #6b5d42;
+  --white: #fffdf7;
+  --infra: #1a4a3a;
+  --logical: #3d5a80;
+  --societal: #6b3a5a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--parchment);
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(61,90,128,0.06), transparent 42%),
+    repeating-linear-gradient(0deg, rgba(36,26,12,0.025) 0px, rgba(36,26,12,0.025) 1px, transparent 1px, transparent 3px);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.65;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+#mainNav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem; padding: 0.9rem 2rem;
+  background: rgba(239,227,200,0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-mark {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.35rem;
+  color: var(--ink); text-decoration: none; white-space: nowrap;
+}
+.nav-mark span { color: var(--copper); font-style: italic; font-weight: 500; }
+.nav-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+.nav-links a {
+  text-decoration: none; font-size: 0.9rem; font-weight: 500;
+  color: var(--forest-deep); position: relative; padding: 0.2rem 0;
+}
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: -2px;
+  height: 2px; background: var(--copper); transition: right .2s ease;
+}
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after { right: 0; }
+.nav-right { display: flex; align-items: center; gap: 0.9rem; }
+.nav-gh {
+  display: flex; align-items: center; gap: 0.4rem; text-decoration: none;
+  font-size: 0.8rem; color: var(--muted); border: 1px solid var(--line);
+  padding: 0.4rem 0.7rem; border-radius: 999px;
+}
+.nav-gh svg { width: 14px; height: 14px; fill: currentColor; }
+.nav-gh:hover { color: var(--ink); border-color: var(--copper); }
+.nav-cta {
+  text-decoration: none; background: var(--copper); color: var(--white);
+  font-weight: 600; font-size: 0.88rem; padding: 0.55rem 1.1rem;
+  border-radius: 4px; box-shadow: 0 2px 0 var(--copper-deep);
+}
+.nav-cta:hover { background: var(--copper-deep); }
+.nav-burger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 0.3rem;
+}
+.nav-burger span { width: 22px; height: 2px; background: var(--ink); display: block; }
+.mobile-menu {
+  display: none; position: fixed; inset: 0; background: var(--forest-deep);
+  z-index: 200; padding: 2rem; flex-direction: column; gap: 1.3rem; overflow-y: auto;
+}
+.mobile-menu.active { display: flex; }
+.mobile-menu a {
+  color: var(--parchment); text-decoration: none;
+  font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 600;
+}
+.mobile-menu .close {
+  align-self: flex-end; color: var(--parchment); font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; cursor: pointer; background: none; border: none; margin-bottom: 0.8rem;
+}
+@media (max-width: 920px) {
+  .nav-links, .nav-gh { display: none; }
+  .nav-burger { display: flex; }
+  #mainNav { padding: 0.85rem 1.1rem; }
+}
+main { max-width: 1080px; margin: 0 auto; padding: 0 1.4rem; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--copper-deep); margin-bottom: 0.9rem;
+}
+.eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--copper-deep); }
+section { padding: 3.8rem 0; border-bottom: 1px solid var(--line); }
+section:last-of-type { border-bottom: none; }
+h2 { font-size: clamp(1.5rem, 3.2vw, 2.2rem); margin-bottom: 0.7rem; }
+h2 em { color: var(--copper); font-style: italic; }
+.section-lead { max-width: 680px; color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; }
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; padding: 0.7rem 1.4rem; border-radius: 4px;
+}
+.btn-primary { background: var(--copper); color: var(--white); box-shadow: 0 3px 0 var(--copper-deep); }
+.btn-primary:hover { background: var(--copper-deep); }
+.btn-ghost { border: 1.5px solid var(--forest); color: var(--forest-deep); }
+.btn-ghost:hover { background: var(--forest); color: var(--parchment); }
+.hero {
+  padding: 3.2rem 0 2.6rem;
+  display: grid; grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.6rem; align-items: center; border-bottom: none;
+}
+.hero h1 {
+  font-size: clamp(1.9rem, 4.5vw, 3.1rem);
+  line-height: 1.1; margin-bottom: 1rem;
+}
+.hero h1 em { color: var(--copper); font-style: italic; font-weight: 500; }
+.hero p.sub { color: var(--muted); font-size: 1.06rem; max-width: 36rem; margin-bottom: 1.5rem; }
+.hero .cta-row { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+.layer-stack {
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 6px 6px 0 rgba(36,26,12,0.12);
+}
+.layer-row {
+  padding: 1.1rem 1.3rem;
+  display: flex; align-items: center; gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem;
+}
+.layer-row:last-child { border-bottom: none; }
+.layer-row .swatch {
+  width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+}
+.layer-row.infra .swatch { background: var(--infra); }
+.layer-row.logical .swatch { background: var(--logical); }
+.layer-row.societal .swatch { background: var(--societal); }
+.layer-row strong { display: block; font-size: 0.9rem; color: var(--ink); margin-bottom: 0.15rem; }
+.layer-row span { color: var(--muted); font-size: 0.72rem; }
+.layer-block {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.6rem;
+}
+.layer-header {
+  padding: 1.2rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  color: var(--white);
+}
+.layer-header.infra { background: var(--infra); }
+.layer-header.logical { background: var(--logical); }
+.layer-header.societal { background: var(--societal); }
+.layer-header h3 {
+  font-size: 1.25rem; color: var(--white); margin: 0;
+}
+.layer-header .badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  background: rgba(255,255,255,0.18); padding: 0.2rem 0.55rem;
+  border-radius: 3px; margin-left: auto;
+}
+.layer-body { padding: 1.4rem 1.5rem 1.6rem; }
+.actor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+.actor-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem 1.1rem;
+}
+.actor-card h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--copper-deep);
+  margin-bottom: 0.45rem;
+}
+.actor-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+.actor-card ul {
+  list-style: none; font-size: 0.84rem; color: var(--ink);
+  margin-top: 0.4rem;
+}
+.actor-card ul li { padding: 0.12rem 0; }
+.actor-card ul li::before { content: "· "; color: var(--copper); font-weight: 700; }
+.infra-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.3rem;
+}
+.infra-item {
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.1rem 0.8rem;
+}
+.infra-item .icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.infra-item strong { display: block; font-size: 0.88rem; margin-bottom: 0.25rem; }
+.infra-item span {
+  font-size: 0.75rem; color: var(--muted); font-family: 'IBM Plex Mono', monospace;
+}
+.logical-flow {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  align-items: center; justify-content: center;
+  margin: 1.4rem 0;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem;
+}
+.logical-flow .node {
+  background: var(--logical);
+  color: var(--white);
+  padding: 0.55rem 0.9rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.logical-flow .plus { color: var(--muted); font-weight: 700; }
+.tech-ops {
+  background: rgba(61,90,128,0.07);
+  border-left: 3px solid var(--logical);
+  padding: 1rem 1.15rem;
+  border-radius: 0 6px 6px 0;
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.tech-ops strong { color: var(--ink); }
+.principle {
+  background: var(--forest-deep);
+  color: var(--parchment);
+  border-radius: 10px;
+  padding: 2.2rem 1.9rem;
+  margin-top: 1.5rem;
+}
+.principle h2 { color: var(--parchment); font-size: 1.5rem; }
+.principle p { color: rgba(239,227,200,0.85); max-width: 640px; margin-top: 0.6rem; }
+footer {
+  background: var(--ink); color: var(--parchment);
+  padding: 2.5rem 1.4rem 2rem;
+}
+.footer-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+footer a { color: var(--gold); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+footer .fine {
+  font-size: 0.8rem; color: rgba(239,227,200,0.55);
+  max-width: 40rem; margin-top: 1.1rem;
+}
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation" aria-modal="true">
+  <button class="close" id="menuClose" aria-label="Close menu">✕ Close</button>
+  <a href="index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="product.html" onclick="closeMobileMenu()">Coffee Collection</a>
+  <a href="gibbs_luxury_coffee_homepage.html" onclick="closeMobileMenu()">Luxury Coffee</a>
+  <a href="soil_classification_lecture.html" onclick="closeMobileMenu()">Coffee Academy</a>
+  <a href="moringa_sunday_school_repository.html" onclick="closeMobileMenu()">Repository</a>
+  <a href="payment.html" onclick="closeMobileMenu()">Payment</a>
+  <a href="coffee.html" onclick="closeMobileMenu()">Research</a>
+  <a href="internet.html" onclick="closeMobileMenu()" aria-current="page">Internet Layers</a>
+  <a href="success.html" onclick="closeMobileMenu()">Success</a>
+</div>
+
+<nav id="mainNav" aria-label="Primary">
+  <a href="index.html" class="nav-mark">Rustic <span>Garden</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="product.html">Coffee Collection</a>
+    <a href="gibbs_luxury_coffee_homepage.html">Luxury Coffee</a>
+    <a href="soil_classification_lecture.html">Coffee Academy</a>
+    <a href="moringa_sunday_school_repository.html">Repository</a>
+    <a href="payment.html">Payment</a>
+    <a href="coffee.html">Research</a>
+    <a href="internet.html" aria-current="page">Internet Layers</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://github.com/groupdougie/Gibbs_Coffee"
+       class="nav-gh" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+      Source
+    </a>
+    <a class="nav-cta" href="checkout.html">Order Coffee</a>
+    <button class="nav-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Digital infrastructure · Research note</div>
+      <h1>No single actor governs the <em>Internet</em>.</h1>
+      <p class="sub">Digital governance is achieved through the collaboration of multistakeholder experts acting through polycentric communities, institutions and platforms. The issues themselves stratify into three layers — infrastructure, logical, and economic-societal — each with its own technical communities and key actors.</p>
+      <div class="cta-row">
+        <a href="#infrastructure" class="btn btn-primary">Explore the layers</a>
+        <a href="https://map.netmundial.org" class="btn btn-ghost" target="_blank" rel="noopener">NetMundial map →</a>
+      </div>
+    </div>
+    <div class="layer-stack" aria-label="Three layers overview">
+      <div class="layer-row societal">
+        <span class="swatch" aria-hidden="true"></span>
+        <div>
+          <strong>Economic &amp; Societal Layer</strong>
+          <span>Laws · Users · Content · Trade · Education</span>
+        </div>
+      </div>
+      <div class="layer-row logical">
+        <span class="swatch" aria-hidden="true"></span>
+        <div>
+          <strong>Logical Layer</strong>
+          <span>Names · Numbers · Protocols · Root Zone</span>
+        </div>
+      </div>
+      <div class="layer-row infra">
+        <span class="swatch" aria-hidden="true"></span>
+        <div>
+          <strong>Infrastructure Layer</strong>
+          <span>Cables · Satellites · IXPs · Wireless</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRASTRUCTURE -->
+  <section id="infrastructure">
+    <div class="eyebrow">Layer 1 · Physical substrate</div>
+    <h2>The <em>Infrastructure</em> Layer</h2>
+    <p class="section-lead">The physical networks that carry packets. Roughly 90 % of the Internet backbone (IP networks) is privately owned by global companies. Governance here is largely technical and operator-driven.</p>
+
+    <div class="layer-block">
+      <div class="layer-header infra">
+        <h3>Physical Internet</h3>
+        <span class="badge">Infrastructure</span>
+      </div>
+      <div class="layer-body">
+        <div class="infra-icons">
+          <div class="infra-item">
+            <div class="icon" aria-hidden="true">⇄</div>
+            <strong>Internet Exchange Points</strong>
+            <span>~500+ IXPs worldwide</span>
+          </div>
+          <div class="infra-item">
+            <div class="icon" aria-hidden="true">═</div>
+            <strong>Terrestrial Cables</strong>
+            <span>Fibre across continents</span>
+          </div>
+          <div class="infra-item">
+            <div class="icon" aria-hidden="true">≈</div>
+            <strong>Undersea Cables</strong>
+            <span>~300 cables · ~99 % of intercontinental data</span>
+          </div>
+          <div class="infra-item">
+            <div class="icon" aria-hidden="true">⌖</div>
+            <strong>Satellites</strong>
+            <span>~2,000+ communications satellites</span>
+          </div>
+          <div class="infra-item">
+            <div class="icon" aria-hidden="true">⌁</div>
+            <strong>Wireless Systems</strong>
+            <span>~824,000 wireless towers worldwide</span>
+          </div>
+        </div>
+
+        <div class="actor-grid" style="margin-top:1.6rem;">
+          <div class="actor-card">
+            <h4>Key governance actors</h4>
+            <ul>
+              <li>GSMA</li>
+              <li>IEEE</li>
+              <li>IETF</li>
+              <li>ITU</li>
+              <li>National ICT Ministries</li>
+              <li>Network Operator Groups</li>
+            </ul>
+          </div>
+          <div class="actor-card">
+            <h4>Ownership reality</h4>
+            <p>Major backbone operators include Level 3, Telefónica International Carrier, CenturyLink, Vodafone, Verizon, Sprint, AT&amp;T and regional peers. The physical layer is overwhelmingly private.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGICAL -->
+  <section id="logical">
+    <div class="eyebrow">Layer 2 · Unique identifiers &amp; protocols</div>
+    <h2>The <em>Logical</em> Layer</h2>
+    <p class="section-lead">Layered on top of the physical substrate, the logical infrastructure delivers the One Internet through unique identifiers — Names, Numbers and Protocol Parameters. ICANN coordinates administration of this layer in partnership with other technical communities to ensure security, stability, resiliency and integrity.</p>
+
+    <div class="layer-block">
+      <div class="layer-header logical">
+        <h3>Names · Numbers · Protocols · Registries</h3>
+        <span class="badge">Logical</span>
+      </div>
+      <div class="layer-body">
+        <div class="logical-flow" aria-label="Logical layer components">
+          <span class="node">Root Zone</span>
+          <span class="plus">+</span>
+          <span class="node">Names</span>
+          <span class="plus">+</span>
+          <span class="node">Numbers</span>
+          <span class="plus">+</span>
+          <span class="node">Internet Protocols</span>
+          <span class="plus">+</span>
+          <span class="node">Identifiers / Public Registries</span>
+        </div>
+
+        <div class="actor-grid">
+          <div class="actor-card">
+            <h4>Root Services</h4>
+            <p>12 organisations from 4 countries administer 13 root-server letters that provide top-level DNS services via hundreds of machines in dozens of countries. ~500 anycast copies worldwide.</p>
+          </div>
+          <div class="actor-card">
+            <h4>Domain Names</h4>
+            <p>~300 Country-Code Top-Level Domains (ccTLDs). ~600+ Generic TLDs (gTLDs). 1,300+ Domain Name Registrars (GoDaddy, Network Solutions, Register…).</p>
+          </div>
+          <div class="actor-card">
+            <h4>IP Addresses</h4>
+            <p>IPv4: more than 4 billion addresses. IPv6: 340 undecillion addresses. 5 Regional Internet Registries (RIRs) coordinate policy related to Internet address resources.</p>
+          </div>
+          <div class="actor-card">
+            <h4>Protocol Parameters</h4>
+            <p>The commands and identifiers used inside protocols — the structured communications for web, email, etc. Defined by the IETF in coordination with other standards bodies (W3C, IEEE…).</p>
+          </div>
+        </div>
+
+        <div class="tech-ops">
+          <strong>Technical operations community.</strong> The technical operating community is made up of multiple independent actors bound by common principles and mutual commitments that ensure the security and stability of the Internet infrastructure. Each actor’s community develops policies and standards in an open, inclusive and consensus-based approach.
+        </div>
+
+        <div class="actor-grid" style="margin-top:1.4rem;">
+          <div class="actor-card">
+            <h4>Core technical actors</h4>
+            <ul>
+              <li>ICANN — Assigned Names &amp; Numbers</li>
+              <li>IANA — Number &amp; Protocol registries</li>
+              <li>IETF — Protocol standards</li>
+              <li>ISO — Geographic &amp; naming standards</li>
+              <li>NRO — Regional Internet Registries</li>
+              <li>TLD Operators &amp; Root Server Operators</li>
+              <li>W3C — Web standards</li>
+            </ul>
+          </div>
+          <div class="actor-card">
+            <h4>RIRs (Numbers)</h4>
+            <ul>
+              <li>AFRINIC</li>
+              <li>APNIC</li>
+              <li>ARIN</li>
+              <li>LACNIC</li>
+              <li>RIPE NCC</li>
+            </ul>
+          </div>
+          <div class="actor-card">
+            <h4>Multistakeholder community</h4>
+            <ul>
+              <li>Academic institutions &amp; students</li>
+              <li>Private-sector companies</li>
+              <li>Civil-society organisations</li>
+              <li>National governments</li>
+              <li>Internet users &amp; engineers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECONOMIC & SOCIETAL -->
+  <section id="societal">
+    <div class="eyebrow">Layer 3 · Human activity on the network</div>
+    <h2>The <em>Economic &amp; Societal</em> Layer</h2>
+    <p class="section-lead">Governing bodies from local, national, regional and international spheres engage with citizens and other bodies to develop and apply laws, policies and regulations. The transnational nature of the Internet must be synchronized with the established international system of governance and laws.</p>
+
+    <div class="layer-block">
+      <div class="layer-header societal">
+        <h3>Content · Commerce · Rights · Culture</h3>
+        <span class="badge">Economic &amp; Societal</span>
+      </div>
+      <div class="layer-body">
+        <div class="actor-grid">
+          <div class="actor-card">
+            <h4>Laws, Policies &amp; Regulations</h4>
+            <p>Governing bodies develop and apply laws, policies and regulations. The transnational character of the Internet requires coordination with the established international legal system.</p>
+          </div>
+          <div class="actor-card">
+            <h4>Industry &amp; Trade</h4>
+            <p>Manufacturing, retail, supply chain, logistics, healthcare, finance and related sectors. Global platforms (Amazon, eBay, Alibaba, Rakuten, Flipkart…) operate across jurisdictions.</p>
+          </div>
+          <div class="actor-card">
+            <h4>News &amp; Information</h4>
+            <p>Newspapers, broadcast, personal and professional blogs, social media. The layer where public discourse and information flows are shaped.</p>
+          </div>
+          <div class="actor-card">
+            <h4>Users</h4>
+            <p>Over 3 billion users worldwide. Most users connect through mobile phones. Regional distribution continues to shift toward Asia, Africa and Latin America.</p>
+          </div>
+          <div class="actor-card">
+            <h4>Civic &amp; Human Rights</h4>
+            <p>Privacy, identity, access to content, freedom of expression, cybersecurity, consumer protection, cultural diversity and related rights.</p>
+          </div>
+          <div class="actor-card">
+            <h4>Social Media &amp; Security</h4>
+            <p>Sharing of photos, videos, ideas and information. Cybersecurity, cyber warfare, cyber espionage and related threats sit at this layer alongside the applications that carry them.</p>
+          </div>
+          <div class="actor-card">
+            <h4>Education &amp; Applications</h4>
+            <p>Online universities, research, tutorials, classroom engagement. World Wide Web, email, cloud, VoIP, mobile apps, entertainment platforms.</p>
+          </div>
+          <div class="actor-card">
+            <h4>Key governance actors</h4>
+            <ul>
+              <li>IGF</li>
+              <li>Technical organisations (ISOC, W3C…)</li>
+              <li>NetMundial</li>
+              <li>World Economic Forum</li>
+              <li>National governments</li>
+              <li>Civil society</li>
+              <li>Intergovernmental organisations (OECD, UNESCO…)</li>
+              <li>Law-enforcement agencies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLE -->
+  <section>
+    <div class="principle">
+      <div class="eyebrow" style="color:var(--gold);">Developmental note</div>
+      <h2>Institutions inherit order; they do not create it</h2>
+      <p>The logical layer of the Internet works because technical communities already recognised legitimate authority — root operators, RIR policy processes, IETF working groups — long before formal intergovernmental structures attempted to oversee them. The same developmental sequence holds for any durable civic or commercial system: presence and reciprocity precede contracts; recognised authority precedes statute. The three layers of digital governance are therefore not merely an organisational chart. They are a living demonstration that order is formed by communities capable of recognising legitimate technical and civic authority, and only afterwards formalised by institutions.</p>
+      <p style="margin-top:1rem;">This page exists so that the same principle can be read clearly when the coffee research site itself is deployed on GitHub Pages — one more node in the logical and infrastructure layers, governed by the same multistakeholder practices that keep the wider Internet stable.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="nav-mark" style="color:var(--parchment);">Rustic <span>Garden</span></div>
+      <p class="fine">Content synthesised from NetMundial / ICANN public materials on the three layers of digital governance (XPLANE design, 2015, Creative Commons Attribution–NonCommercial). For the full issue map see map.netmundial.org. This page is educational; it is not an official ICANN or NetMundial document.</p>
+    </div>
+    <div>
+      <a href="coffee.html">Coffee research</a><br><br>
+      <a href="product.html">Shop the collection</a><br><br>
+      <a href="https://map.netmundial.org" target="_blank" rel="noopener">NetMundial map →</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuClose = document.getElementById('menuClose');
+
+  function openMobileMenu() {
+    mobileMenu.classList.add('active');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  burgerBtn.addEventListener('click', openMobileMenu);
+  menuClose.addEventListener('click', closeMobileMenu);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMobileMenu();
+  });
+</script>
+
+</body>
+</html>
