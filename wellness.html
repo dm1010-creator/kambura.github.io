@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wellness Atlas | Rustic Garden</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+ --forest:#28483d;
+ --sage:#7fa08a;
+ --cream:#f7f3eb;
+ --gold:#c8a96a;
+ --earth:#8b5a3c;
+ --mist:#eef5f0;
+ --dark:#18211d;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+ background:var(--cream);
+ color:#24312a;
+ font-family:Inter,sans-serif;
+ line-height:1.8;
+ overflow-x:hidden;
+}
+
+/* Progress Bar */
+
+#progress{
+ position:fixed;
+ top:0;
+ left:0;
+ width:0;
+ height:4px;
+ background:var(--gold);
+ z-index:9999;
+}
+
+/* Navigation */
+
+nav{
+ position:fixed;
+ top:0;
+ width:100%;
+ padding:18px 8%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:rgba(247,243,235,.88);
+ backdrop-filter:blur(14px);
+ z-index:999;
+}
+
+.logo{
+ font-family:"Cormorant Garamond",serif;
+ font-size:2rem;
+ color:var(--forest);
+ text-decoration:none;
+}
+
+nav ul{
+ display:flex;
+ gap:24px;
+ list-style:none;
+}
+
+nav a{
+ color:var(--forest);
+ text-decoration:none;
+ font-weight:500;
+}
+
+/* Hero */
+
+.hero{
+ height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ text-align:center;
+ color:white;
+ position:relative;
+ overflow:hidden;
+}
+
+.hero::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:
+ linear-gradient(rgba(24,33,29,.45),rgba(24,33,29,.55)),
+ url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80");
+ background-size:cover;
+ background-position:center;
+ animation:slowZoom 30s linear infinite alternate;
+}
+
+@keyframes slowZoom{
+
+from{transform:scale(1);}
+to{transform:scale(1.08);}
+
+}
+
+.hero-content{
+ position:relative;
+ z-index:2;
+ max-width:850px;
+ padding:30px;
+}
+
+.hero h1{
+ font-family:"Cormorant Garamond",serif;
+ font-size:4.7rem;
+ margin-bottom:20px;
+}
+
+.hero p{
+ font-size:1.25rem;
+ margin-bottom:35px;
+}
+
+.btn{
+ display:inline-block;
+ padding:15px 34px;
+ border-radius:50px;
+ background:var(--gold);
+ color:white;
+ text-decoration:none;
+ font-weight:600;
+ transition:.35s;
+}
+
+.btn:hover{
+ transform:translateY(-3px);
+ background:var(--earth);
+}
+
+/* Sections */
+
+section{
+ padding:95px 10%;
+}
+
+.title{
+ font-family:"Cormorant Garamond",serif;
+ font-size:3rem;
+ color:var(--forest);
+ text-align:center;
+ margin-bottom:55px;
+}
+
+/* Glass cards */
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+ gap:28px;
+}
+
+.card{
+ background:white;
+ border-radius:22px;
+ overflow:hidden;
+ box-shadow:0 12px 35px rgba(0,0,0,.08);
+ transition:.35s;
+}
+
+.card:hover{
+ transform:translateY(-10px);
+}
+
+.card img{
+ width:100%;
+ height:220px;
+ object-fit:cover;
+}
+
+.card-body{
+ padding:24px;
+}
+
+.card h3{
+ color:var(--forest);
+ margin-bottom:12px;
+}
+
+/* Comparison */
+
+.compare{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+ gap:30px;
+}
+
+.panel{
+ background:white;
+ padding:34px;
+ border-radius:22px;
+ border-top:6px solid var(--gold);
+}
+
+/* Timeline */
+
+.timeline{
+ position:relative;
+ max-width:900px;
+ margin:auto;
+}
+
+.step{
+ background:white;
+ margin:25px 0;
+ padding:28px;
+ border-left:5px solid var(--gold);
+ border-radius:14px;
+}
+
+/* Acupressure */
+
+.points{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+ gap:20px;
+}
+
+.point{
+ background:white;
+ padding:25px;
+ text-align:center;
+ border-radius:18px;
+ cursor:pointer;
+ transition:.3s;
+}
+
+.point:hover{
+ background:var(--mist);
+ transform:translateY(-6px);
+}
+
+.point span{
+ font-size:2rem;
+ display:block;
+ margin-bottom:12px;
+}
+
+/* Modal */
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.6);
+ display:none;
+ justify-content:center;
+ align-items:center;
+ padding:25px;
+ z-index:2000;
+}
+
+.modal-box{
+ background:white;
+ max-width:720px;
+ border-radius:24px;
+ overflow:hidden;
+}
+
+.modal img{
+ width:100%;
+ height:280px;
+ object-fit:cover;
+}
+
+.modal-content{
+ padding:28px;
+}
+
+.close{
+ float:right;
+ cursor:pointer;
+ font-size:2rem;
+}
+
+/* Herbs */
+
+.tag{
+ display:inline-block;
+ background:var(--mist);
+ color:var(--forest);
+ padding:8px 15px;
+ border-radius:40px;
+ margin:6px;
+}
+
+/* Reflection */
+
+.quiz{
+ background:white;
+ border-radius:24px;
+ padding:35px;
+ max-width:760px;
+ margin:auto;
+}
+
+.question{
+ margin:18px 0;
+}
+
+.result{
+ display:none;
+ margin-top:25px;
+ padding:20px;
+ background:var(--mist);
+ border-left:5px solid var(--gold);
+}
+
+/* Footer */
+
+footer{
+ background:var(--dark);
+ color:#ddd;
+ padding:70px 10%;
+ text-align:center;
+}
+
+footer a{
+ color:var(--gold);
+ text-decoration:none;
+}
+
+/* Fade animation */
+
+.fade{
+ opacity:0;
+ transform:translateY(35px);
+ transition:1s;
+}
+
+.fade.show{
+ opacity:1;
+ transform:none;
+}
+
+@media(max-width:760px){
+
+.hero h1{
+font-size:3rem;
+}
+
+nav ul{
+gap:14px;
+font-size:.9rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="progress"></div>
+
+<nav>
+
+<a href="index.html" class="logo">Rustic Garden</a>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="#balance">Balance</a></li>
+<li><a href="#points">Points</a></li>
+<li><a href="#herbs">Herbs</a></li>
+</ul>
+
+</nav>
+
+<header class="hero">
+
+<div class="hero-content fade">
+
+<h1>The Living Wellness Atlas</h1>
+
+<p>
+An educational journey through Ayurveda, Traditional Chinese Medicine,
+botanical traditions, forests, flowing water, and the art of restoring balance.
+</p>
+
+<a href="#balance" class="btn">Enter the Forest</a>
+
+</div>
+
+</header>
+
+<section id="balance">
+
+<h2 class="title fade">Understanding Fire & Damp</h2>
+
+<div class="compare">
+
+<div class="panel fade">
+
+<h3>Ayurveda</h3>
+
+<p>
+Agni represents digestive and metabolic fire.
+Traditional Ayurvedic practice views health as maintaining balanced Agni rather than extinguishing it.
+When fire becomes excessively sharp (Tikshna Agni), cooling foods, calming routines, and restorative herbs are traditionally explored.
+</p>
+
+</div>
+
+<div class="panel fade">
+
+<h3>Traditional Chinese Medicine</h3>
+
+<p>
+Damp Heat is a traditional TCM pattern describing warmth combined with heaviness or stagnation.
+Traditional approaches include cooling acupressure points, herbal wisdom, and lifestyle practices intended to encourage harmony.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title fade">Nature's Cooling Landscape</h2>
+
+<div class="grid">
+
+<div class="card fade">
+<img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80">
+<div class="card-body">
+<h3>Waterfalls</h3>
+<p>Flowing water symbolizes release, clarity, and the gentle movement often celebrated across traditional wellness systems.</p>
+</div>
+</div>
+
+<div class="card fade">
+<img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80">
+<div class="card-body">
+<h3>Ancient Forests</h3>
+<p>Cool shade, moisture, and stillness evoke restorative qualities found in many botanical traditions.</p>
+</div>
+</div>
+
+<div class="card fade">
+<img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80">
+<div class="card-body">
+<h3>Moss & Mist</h3>
+<p>Soft landscapes remind us that balance is often cultivated through gentleness rather than force.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="points">
+
+<h2 class="title fade">Interactive Acupressure Explorer</h2>
+
+<div class="points">
+
+<div class="point fade" onclick="showPoint('LI11 – Quchi','Traditionally used in TCM to help cool excess heat.','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
+<span>🌿</span>
+<strong>LI11</strong>
+</div>
+
+<div class="point fade" onclick="showPoint('LV3 – Taichong','Traditionally associated with easing tension.','https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=900&q=80')">
+<span>🏔️</span>
+<strong>LV3</strong>
+</div>
+
+<div class="point fade" onclick="showPoint('SP9 – Yinlingquan','Traditionally associated with draining dampness.','https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80')">
+<span>🍃</span>
+<strong>SP9</strong>
+</div>
+
+<div class="point fade" onclick="showPoint('ST36 – Zusanli','Traditionally associated with digestive vitality.','https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80')">
+<span>💧</span>
+<strong>ST36</strong>
+</div>
+
+<div class="point fade" onclick="showPoint('PC6 – Neiguan','Traditionally associated with calming.','https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80')">
+<span>🎋</span>
+<strong>PC6</strong>
+</div>
+
+<div class="point fade" onclick="showPoint('KI3 – Taixi','Traditionally associated with nourishing Yin.','https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=900&q=80')">
+<span>🪨</span>
+<strong>KI3</strong>
+</div>
+
+</div>
+
+</section>
+
+<section id="herbs">
+
+<h2 class="title fade">Botanical Wisdom</h2>
+
+<div class="grid">
+
+<div class="card fade">
+<img src="https://images.unsplash.com/photo-1515586838455-8f8f940d6853?auto=format&fit=crop&w=900&q=80">
+<div class="card-body">
+<h3>Cooling Herbs</h3>
+<p>Guduchi, Amla, Coriander, and Aloe Vera are traditionally described as cooling allies.</p>
+<div class="tag">Guduchi</div>
+<div class="tag">Amla</div>
+<div class="tag">Coriander</div>
+</div>
+</div>
+
+<div class="card fade">
+<img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=80">
+<div class="card-body">
+<h3>Bitter Botanicals</h3>
+<p>Neem, Turmeric, and Andrographis illustrate the traditional role of bitter herbs.</p>
+<div class="tag">Neem</div>
+<div class="tag">Turmeric</div>
+<div class="tag">Andrographis</div>
+</div>
+</div>
+
+<div class="card fade">
+<img src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=900&q=80">
+<div class="card-body">
+<h3>Digestive Aromatics</h3>
+<p>Fennel, Mint, and Cardamom are traditionally paired with digestive rituals.</p>
+<div class="tag">Fennel</div>
+<div class="tag">Mint</div>
+<div class="tag">Cardamom</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title fade">East African Botanical Bridge</h2>
+
+<div class="grid">
+
+<div class="card fade">
+<img src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?auto=format&fit=crop&w=900&q=80">
+<div class="card-body">
+<h3>Warburgia ugandensis</h3>
+<p>A remarkable East African medicinal tree traditionally valued in local herbal knowledge.</p>
+</div>
+</div>
+
+<div class="card fade">
+<img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?auto=format&fit=crop&w=900&q=80">
+<div class="card-body">
+<h3>Aloe Vera</h3>
+<p>A familiar botanical traditionally associated with cooling qualities across several traditions.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title fade">A Cooling Daily Rhythm</h2>
+
+<div class="timeline">
+
+<div class="step fade"><strong>Dawn</strong><br>Begin with warm water and a quiet moment outdoors beneath trees.</div>
+
+<div class="step fade"><strong>Morning</strong><br>Choose fresh herbs and gentle movement rather than rushing.</div>
+
+<div class="step fade"><strong>Afternoon</strong><br>Hydrate well and favour cooling foods such as cucumber and coriander.</div>
+
+<div class="step fade"><strong>Evening</strong><br>Wind down with calming herbal tea and reduced stimulation.</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title fade">Reflective Wellness Check</h2>
+
+<div class="quiz fade">
+
+<div class="question"><label><input type="checkbox" class="q"> I often feel unusually warm.</label></div>
+
+<div class="question"><label><input type="checkbox" class="q"> Heavy meals leave me feeling sluggish.</label></div>
+
+<div class="question"><label><input type="checkbox" class="q"> I frequently feel thirsty.</label></div>
+
+<div class="question"><label><input type="checkbox" class="q"> I feel calmer after spending time in nature.</label></div>
+
+<button class="btn" onclick="reflect()">View Reflection</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2>Rustic Garden Wellness Library</h2>
+
+<p>
+This page is intended for educational purposes and explores traditional wellness systems including Ayurveda and Traditional Chinese Medicine.
+These practices are not substitutes for professional medical diagnosis or treatment.
+Persistent or severe symptoms should be evaluated by a qualified healthcare professional.
+</p>
+
+<p style="margin-top:25px;">
+<a href="index.html">← Return to Rustic Garden</a>
+</p>
+
+</footer>
+
+<!-- Modal -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<img id="modalImg">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">×</span>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
+<p style="margin-top:18px;color:#666;">
+Traditionally, gentle circular pressure is explored for around 30–60 seconds on each side. Stop if discomfort increases.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* Progress */
+
+window.addEventListener("scroll",()=>{
+
+const h=document.documentElement;
+const scrolled=h.scrollTop;
+const height=h.scrollHeight-h.clientHeight;
+
+document.getElementById("progress").style.width=(scrolled/height*100)+"%";
+
+});
+
+/* Fade */
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting)
+entry.target.classList.add("show");
+
+});
+
+},{threshold:.15});
+
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+
+/* Modal */
+
+function showPoint(title,text,img){
+
+modal.style.display="flex";
+modalTitle.innerText=title;
+modalText.innerText=text;
+modalImg.src=img;
+
+}
+
+function closeModal(){
+
+modal.style.display="none";
+
+}
+
+window.onclick=e=>{
+
+if(e.target===modal)
+closeModal();
+
+}
+
+/* Reflection */
+
+function reflect(){
+
+let score=0;
+
+document.querySelectorAll(".q").forEach(q=>{
+
+if(q.checked)
+score++;
+
+});
+
+const result=document.getElementById("result");
+
+result.style.display="block";
+
+if(score>=3){
+
+result.innerHTML="<strong>Reflection:</strong> Your responses suggest you may enjoy exploring cooling routines such as hydration, calming breathwork, and gentle acupressure while consulting a qualified practitioner if symptoms persist.";
+
+}else{
+
+result.innerHTML="<strong>Reflection:</strong> Your responses suggest maintaining balanced routines, fresh foods, movement, and time in nature may support overall wellbeing.";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
